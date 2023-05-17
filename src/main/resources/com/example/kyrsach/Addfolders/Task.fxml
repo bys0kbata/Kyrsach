@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kyrsach.Controller.TaskController">
+   <bottom>
+      <AnchorPane prefHeight="41.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="ButtonUpdate" layoutX="503.0" layoutY="8.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 20; -fx-border-radius: 20;" text="Обновить" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="221.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="listTask" layoutX="14.0" layoutY="10.0" prefHeight="319.0" prefWidth="577.0" style="-fx-border-color: #464451; -fx-background-radius: 5; -fx-border-radius: 5;" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

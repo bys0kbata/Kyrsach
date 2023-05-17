@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="509.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kyrsach.MainController">
+   <left>
+      <AnchorPane prefHeight="370.0" prefWidth="176.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" BorderPane.alignment="CENTER">
+         <children>
+            <TreeView fx:id="treeFile" layoutX="12.0" layoutY="12.0" prefHeight="396.0" prefWidth="152.0" style="-fx-border-color: #464451; -fx-border-radius: 5; -fx-background-radius: 5;" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="421.0" prefWidth="733.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableView" layoutX="9.0" layoutY="11.0" prefHeight="398.0" prefWidth="782.0" style="-fx-border-color: #464451; -fx-background-radius: 5; -fx-background-color: white; -fx-border-radius: 5;">
+              <columns>
+                <TableColumn fx:id="oneColumnTableView" prefWidth="200.0" text="Имя" />
+                <TableColumn fx:id="twoColumnTableView" prefWidth="150.0" text="Размер" />
+                  <TableColumn fx:id="freeColumnTableView" prefWidth="150.0" text="Последнее изменение" />
+                  <TableColumn fx:id="foureColumnTableView" prefWidth="100.0" text="Тип" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <VBox prefHeight="88.0" prefWidth="838.0" style="-fx-background-color: #B5B8B1;" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar prefHeight="26.0" prefWidth="838.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" styleClass="-fx-border-color#464451">
+               <menus>
+                  <Menu mnemonicParsing="false" style="-fx-background-color: #B5B8B1; -fx-border-color: #B5B8B1; -fx-background-radius: 5; -fx-border-radius: 5;">
+                     <items>
+                        <MenuItem fx:id="buttonAbout" mnemonicParsing="false" text="О программе" />
+                        <MenuItem fx:id="buttonAgry" mnemonicParsing="false" text="Справка" />
+                     </items>
+                     <graphic>
+                        <Button mnemonicParsing="false" prefHeight="13.0" prefWidth="69.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: #464451;" text="Help" />
+                     </graphic>
+                  </Menu>
+                  <Menu mnemonicParsing="false">
+                     <items>
+                        <MenuItem fx:id="buttonStartTerminal" mnemonicParsing="false" text="Запуск" />
+                     </items>
+                     <graphic>
+                        <Button mnemonicParsing="false" prefHeight="13.0" prefWidth="69.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: #464451;" text="Terminal" />
+                     </graphic>
+                  </Menu>
+                  <Menu mnemonicParsing="false">
+                    <items>
+                      <MenuItem fx:id="buttonStartTask" mnemonicParsing="false" text="Показать" />
+                    </items>
+                     <graphic>
+                        <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 5; -fx-border-radius: 5;" text="Task" />
+                     </graphic>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <HBox prefHeight="85.0" prefWidth="838.0">
+               <children>
+                  <AnchorPane prefHeight="49.0" prefWidth="1052.0" style="-fx-background-color: #B5B8B1;">
+                     <children>
+                        <Button fx:id="buttonOpen" layoutX="698.0" layoutY="12.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" style="-fx-background-radius: 20; -fx-background-color: white; -fx-border-color: #464451; -fx-border-radius: 20;" text="Open" />
+                        <TextField fx:id="fieldURL" layoutX="207.0" layoutY="12.0" prefHeight="26.0" prefWidth="475.0" promptText="Путь к файлу" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;" text="D:\скрипты" />
+                        <ButtonBar layoutX="4.0" layoutY="11.0" prefHeight="29.0" prefWidth="190.0">
+                          <buttons>
+                              <Button fx:id="forwatdButton" minWidth="47.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="110.0" style="-fx-background-radius: 20; -fx-background-color: white; -fx-border-color: #464451; -fx-border-radius: 20;" text="&lt;">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="backButton" minWidth="40.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="54.0" style="-fx-background-radius: 20; -fx-background-color: white; -fx-border-color: #464451; -fx-border-radius: 20;" text="&gt;">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Button>
+                          </buttons>
+                        </ButtonBar>
+                        <Button fx:id="buttonFind" layoutX="922.0" layoutY="11.0" mnemonicParsing="false" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: white; -fx-border-color: #464451;" text="Поиск" />
+                        <TextField fx:id="fieldURL1" layoutX="761.0" layoutY="12.0" prefHeight="27.0" prefWidth="154.0" promptText="Имя файла" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>
