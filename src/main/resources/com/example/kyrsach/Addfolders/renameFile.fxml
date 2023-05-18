@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="158.0" prefWidth="376.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kyrsach.Controller.renameFileController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="121.0" prefWidth="343.0" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 20; -fx-border-radius: 20;">
+         <children>
+            <TextField layoutX="14.0" layoutY="48.0" prefHeight="25.0" prefWidth="184.0" promptText="Введите новое имя" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;" />
+            <Button layoutX="223.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 5; -fx-border-radius: 5;" text="Переименовать" />
+            <Text layoutX="122.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите новое имя" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

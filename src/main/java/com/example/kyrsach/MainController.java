@@ -204,13 +204,19 @@ public class MainController {
         }
     }
 
-    void OpenTreeView(MouseEvent event) throws Exception {
+    void OpenTreeView(MouseEvent event)  {
         if (event.getButton() == MouseButton.PRIMARY) {
-            System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getPath() + "\\");
-            if (event.getClickCount() == 2) {
-                fieldURL.setText(treeFile.getSelectionModel().getSelectedItem().getValue().getPath() + "\\");
-                dirname2.clear();
-                openFileandReadFile();
+            if (event.getClickCount()==2) {
+                File nonstop = new File(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath());
+                if (nonstop.isFile() == true) {
+                    filemetod.openFile(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath());
+
+                } else {
+                    fieldURL.setText(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath() + "\\");
+                    dirname2.clear();
+                    openFileandReadFile();
+
+                }
             }
         }
     }
@@ -241,13 +247,13 @@ public class MainController {
      *
      * Cоздание для листView
      */
-    private void createTree(File root_file, TreeItem parent) {
+    private void createTree(File root_file, TreeItem<File> parent) {
             if (root_file.isDirectory()) {
-                TreeItem node = new TreeItem(root_file.getName());
+                TreeItem<File> node = new TreeItem<File>(new File(root_file.getName()));
                 parent.getChildren().add(node);
                 for (File f : root_file.listFiles()) {
                     if (f.isDirectory()) {
-                            TreeItem placeholder = new TreeItem(" "); // Add TreeItem to make parent expandable even it has no child yet.
+                            TreeItem placeholder = new TreeItem<File>(new File(node.getValue().getAbsolutePath())); // Add TreeItem to make parent expandable even it has no child yet.
                             node.getChildren().add(placeholder);
 
                             // When parent is expanded continue the recursive
@@ -263,20 +269,32 @@ public class MainController {
                         }
                 }
             } else {
-                parent.getChildren().add(new TreeItem(root_file.getName()));
+                parent.getChildren().add(new TreeItem<File>(new File(root_file.getName())));
             }
     }
         @FXML 
     void initialize() {
             openFileandReadFile2();
-            createTree(new File(new File(".//Kyrsovay//System//").getParentFile().getName()),romans);
+            System.out.println(new File( ".//Kyrsovay//System//").getParentFile().getAbsolutePath());
+            createTree(new File(new File(".//Kyrsovay//System//").getParentFile().getAbsolutePath()),romans);
             treeFile.setRoot(romans);
             contextMenu.getItems().addAll(menuOpen, menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile);
             contextMenu.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #464451;");
             //Контекстное меню
             menuOpen.setOnAction(actionEvent -> {
+                System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getParentFile().getAbsolutePath());
+                String URL1 = new String(fieldURL.getText()+"\\"+treeFile.getSelectionModel().getSelectedItem().getValue().getPath());
+                System.out.println(URL1);
+                fieldURL.setText(URL1);
                 dirname2.clear();
                 openFileandReadFile();
+            });
+            menuRename.setOnAction(actionEvent -> {
+                try {
+                    open.openWindows("/com/example/kyrsach/Addfolders/copyFile.fxml", "Файл rename", 730, 252);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
             menuCreateFile.setOnAction(actionEvent -> {
                 try {
@@ -288,6 +306,16 @@ public class MainController {
             menuCreateDir.setOnAction(actionEvent ->{
                 File filemenu = treeFile.getSelectionModel().getSelectedItem().getValue();
                 System.out.println(filemenu.getName());
+            });
+            menuDelete.setOnAction(actionEvent ->{
+                File filemenu = new File(treeFile.getSelectionModel().getSelectedItem().getValue().getPath());
+                System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath());
+                if(filemenu.delete()){
+                    System.out.println("tmp/file.txt файл был удален с корневой папки проекта");
+                }else System.out.println("Файл tmp/file.txt не был найден в корневой папке проекта");
+            });
+            menuDeleteBasket.setOnAction(actionEvent ->{
+                //Нужно перемещать в папку Корзина
             });
             //Функционал Менюшки
             {
@@ -304,7 +332,7 @@ public class MainController {
                 buttonAgry.setOnAction(actionEvent ->
                 {
                     try {
-                        open.openWindows("/com/example/kyrsach/Addfolders/helper agry.fxml", "Cправка", 276, 91);
+                        open.openWindows("/com/example/kyrsach/Addfolders/helper agry.fxml", "Cправка", 323, 172);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -357,12 +385,13 @@ public class MainController {
                         if (mouseEvent.getClickCount() == 1) {
                             Point location = MouseInfo.getPointerInfo().getLocation();
                             contextMenu.show(treeFile, location.getX(), location.getY());
-                        } else {
-                            try {
-                                OpenTreeView(mouseEvent);
-                            } catch (Exception e) {
-                                throw new RuntimeException(e);
-                            }
+                        }
+                    }else {
+                        try {
+                            contextMenu.hide();
+                            OpenTreeView(mouseEvent);
+                        } catch (Exception e) {
+                            alert.membersError("Нет приложения для открытия такого файла.");
                         }
                     }
 
@@ -375,11 +404,13 @@ public class MainController {
                         Point location = MouseInfo.getPointerInfo().getLocation();
                         contextMenu.show(tableView,location.getX(),location.getY());
                     }
-                }
-                try {
-                    OpenTableView(mouseEvent);
-                } catch (Exception e) {
-                    alert.membersError("Нет приложения для открытия такого файла.");
+                }else {
+                    try {
+                        contextMenu.hide();
+                        OpenTableView(mouseEvent);
+                    } catch (Exception e) {
+                        alert.membersError("Нет приложения для открытия такого файла.");
+                    }
                 }
             });
             /**

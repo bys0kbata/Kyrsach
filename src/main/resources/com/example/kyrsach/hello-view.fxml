@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="509.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kyrsach.MainController">
+<BorderPane prefHeight="509.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kyrsach.MainController">
    <left>
       <AnchorPane prefHeight="370.0" prefWidth="176.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" BorderPane.alignment="CENTER">
          <children>
@@ -35,6 +46,7 @@
                      <items>
                         <MenuItem fx:id="buttonAbout" mnemonicParsing="false" text="О программе" />
                         <MenuItem fx:id="buttonAgry" mnemonicParsing="false" text="Справка" />
+                        <MenuItem mnemonicParsing="false" text="WinTask" />
                      </items>
                      <graphic>
                         <Button mnemonicParsing="false" prefHeight="13.0" prefWidth="69.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: #464451;" text="Help" />
@@ -56,6 +68,17 @@
                         <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 5; -fx-border-radius: 5;" text="Task" />
                      </graphic>
                   </Menu>
+                  <Menu mnemonicParsing="false">
+                     <items>
+                        <MenuItem fx:id="buttonStartTask1" mnemonicParsing="false" text="Показать" />
+                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                     </items>
+                     <graphic>
+                        <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 5; -fx-border-radius: 5;" text="App" />
+                     </graphic>
+                  </Menu>
                </menus>
             </MenuBar>
             <HBox prefHeight="85.0" prefWidth="838.0">
@@ -63,7 +86,7 @@
                   <AnchorPane prefHeight="49.0" prefWidth="1052.0" style="-fx-background-color: #B5B8B1;">
                      <children>
                         <Button fx:id="buttonOpen" layoutX="698.0" layoutY="12.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" style="-fx-background-radius: 20; -fx-background-color: white; -fx-border-color: #464451; -fx-border-radius: 20;" text="Open" />
-                        <TextField fx:id="fieldURL" layoutX="207.0" layoutY="12.0" prefHeight="26.0" prefWidth="475.0" promptText="Путь к файлу" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;" text="D:\скрипты" />
+                        <TextField fx:id="fieldURL" layoutX="207.0" layoutY="12.0" prefHeight="26.0" prefWidth="475.0" promptText="Путь к файлу" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;" />
                         <ButtonBar layoutX="4.0" layoutY="11.0" prefHeight="29.0" prefWidth="190.0">
                           <buttons>
                               <Button fx:id="forwatdButton" minWidth="47.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="110.0" style="-fx-background-radius: 20; -fx-background-color: white; -fx-border-color: #464451; -fx-border-radius: 20;" text="&lt;">
@@ -78,7 +101,7 @@
                               </Button>
                           </buttons>
                         </ButtonBar>
-                        <Button fx:id="buttonFind" layoutX="922.0" layoutY="11.0" mnemonicParsing="false" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: white; -fx-border-color: #464451;" text="Поиск" />
+                        <Button fx:id="buttonFind" layoutX="922.0" layoutY="11.0" mnemonicParsing="false" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: white; -fx-border-color: #464451;" text="Search" />
                         <TextField fx:id="fieldURL1" layoutX="761.0" layoutY="12.0" prefHeight="27.0" prefWidth="154.0" promptText="Имя файла" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;" />
                      </children>
                   </AnchorPane>
