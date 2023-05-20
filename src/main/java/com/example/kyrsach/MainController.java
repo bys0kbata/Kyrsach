@@ -19,14 +19,21 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.*;
+import javafx.stage.Stage;
+
+import javax.swing.*;
 
 
 public class MainController {
@@ -291,7 +298,8 @@ public class MainController {
             });
             menuRename.setOnAction(actionEvent -> {
                 try {
-                    open.openWindows("/com/example/kyrsach/Addfolders/copyFile.fxml", "Файл rename", 730, 252);
+                    open.openWindows("/com/example/kyrsach/Addfolders/renameFile.fxml", "Файл rename", 730, 252);
+                    tableView.getSelectionModel().getSelectedItem().getPuth();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -487,5 +495,33 @@ public class MainController {
                         }
                 );
             }
+            tableView.setRowFactory(tv -> {
+                Image Lav = new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png");
+                TableRow<nameTable> row = new TableRow<>();
+                row.setOnDragDetected(event -> {
+                    if(new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isDirectory()){
+                    Dragboard db = row.startDragAndDrop(TransferMode.ANY);;
+                    db.setDragView(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
+                    /* put a string on dragboard */
+                    ClipboardContent content = new ClipboardContent();
+                    content.putImage(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
+                    db.setContent(content);
+                    event.consume();} else {
+                        Dragboard db = row.startDragAndDrop(TransferMode.ANY);;
+                        db.setDragView(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
+                        /* put a string on dragboard */
+                        ClipboardContent content = new ClipboardContent();
+                        content.putImage(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
+                        db.setContent(content);
+                        event.consume();
+                    }});
+                row.setOnMouseDragged(mouseEvent -> {
+
+                });
+                row.setOnMouseDragEntered(event -> {
+                    System.out.println(tableView.getSelectionModel().getSelectedItem().getNameFile());
+                });
+                return row;
+            });
         }
     }

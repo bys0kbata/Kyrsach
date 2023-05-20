@@ -8,8 +8,8 @@
    <children>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="121.0" prefWidth="343.0" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 20; -fx-border-radius: 20;">
          <children>
-            <TextField layoutX="14.0" layoutY="48.0" prefHeight="25.0" prefWidth="184.0" promptText="Введите новое имя" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;" />
-            <Button layoutX="223.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 5; -fx-border-radius: 5;" text="Переименовать" />
+            <TextField fx:id="textnamenew" layoutX="14.0" layoutY="48.0" prefHeight="25.0" prefWidth="184.0" promptText="Введите новое имя" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;" />
+            <Button fx:id="buttonRename" layoutX="223.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 5; -fx-border-radius: 5;" text="Переименовать" />
             <Text layoutX="122.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите новое имя" />
          </children>
       </AnchorPane>
