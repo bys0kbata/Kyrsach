@@ -1,6 +1,7 @@
 package com.example.kyrsach.Controller;
 
 
+import com.example.kyrsach.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,6 +23,10 @@ public class renameFileController {
     {
     this.starName = starName;
     }*/
+    String renameOne;
+    public renameFileController(String renameOne){
+        this.renameOne = renameOne;
+    }
     @FXML
     void initialize() {
         buttonRename.setOnMouseMoved(
@@ -31,6 +36,8 @@ public class renameFileController {
         );
         buttonRename.setOnAction(ActionEvent -> {
             textnamenewval = textnamenew.getText();
+            System.out.println();
+            System.out.println(textnamenewval);
             Stage stage = (Stage) buttonRename.getScene().getWindow();
             stage.close();
 

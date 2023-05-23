@@ -4,11 +4,16 @@ package com.example.kyrsach;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.lang.annotation.Target;
 import java.net.URL;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.example.kyrsach.Controller.renameFileController;
 import com.example.kyrsach.Metod.alertMembers;
 import com.example.kyrsach.Metod.metodFile;
 import com.example.kyrsach.Metod.nameTable;
@@ -34,6 +39,8 @@ import javafx.scene.input.*;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 
 public class MainController {
@@ -102,6 +109,9 @@ public class MainController {
     openWindows open = new openWindows();
     File MainFolder = new File("Kyrsovay//");
     public String dir = MainFolder.getAbsolutePath();
+    public  String renameVal;
+    public String copyVal;
+    public String copyNameVal;
     ArrayList<String> histiryURL = new ArrayList<>(100000);
     metodFile filemetod = new metodFile();
      ContextMenu contextMenu = new ContextMenu();
@@ -279,12 +289,18 @@ public class MainController {
                 parent.getChildren().add(new TreeItem<File>(new File(root_file.getName())));
             }
     }
+    public String getRenameVal(){
+        return renameVal;
+    }
         @FXML 
     void initialize() {
             openFileandReadFile2();
             System.out.println(new File( ".//Kyrsovay//System//").getParentFile().getAbsolutePath());
             createTree(new File(new File(".//Kyrsovay//System//").getParentFile().getAbsolutePath()),romans);
             treeFile.setRoot(romans);
+            /**
+             * Контекстное меню для tableView
+             *  */
             contextMenu.getItems().addAll(menuOpen, menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile);
             contextMenu.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #464451;");
             //Контекстное меню
@@ -296,10 +312,36 @@ public class MainController {
                 dirname2.clear();
                 openFileandReadFile();
             });
+            menuСopy.setOnAction(actionEvent -> {
+                copyVal = tableView.getSelectionModel().getSelectedItem().getPuth();
+                copyNameVal = tableView.getSelectionModel().getSelectedItem().getNameFile();
+                System.out.println(copyVal);
+            });
+            menuPaste.setOnAction(actionEvent -> {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (new File(copyVal).isFile()){
+                                Files.copy(Path.of(copyVal), Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal));
+                                System.out.println("Это файл"+ Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal));
+                        }else {
+                                Files.copy(Path.of(copyVal), Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal), REPLACE_EXISTING);
+                                System.out.println("Это директория");
+                            }
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+                ).start();
+            });
+
             menuRename.setOnAction(actionEvent -> {
                 try {
+                    renameFileController re = new renameFileController(tableView.getSelectionModel().getSelectedItem().getPuth());
+
                     open.openWindows("/com/example/kyrsach/Addfolders/renameFile.fxml", "Файл rename", 730, 252);
-                    tableView.getSelectionModel().getSelectedItem().getPuth();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -316,16 +358,50 @@ public class MainController {
                 System.out.println(filemenu.getName());
             });
             menuDelete.setOnAction(actionEvent ->{
-                File filemenu = new File(treeFile.getSelectionModel().getSelectedItem().getValue().getPath());
-                System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath());
-                if(filemenu.delete()){
-                    System.out.println("tmp/file.txt файл был удален с корневой папки проекта");
-                }else System.out.println("Файл tmp/file.txt не был найден в корневой папке проекта");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isFile()){
+                                Files.delete(Path.of(tableView.getSelectionModel().getSelectedItem().getPuth()));
+                                System.out.println("Это файл");
+                                dirname2.clear();
+                                openFileandReadFile();
+                                Thread.interrupted();
+                            }else {
+                                System.out.println("Это директория");
+                            }
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }).start();
+
             });
             menuDeleteBasket.setOnAction(actionEvent ->{
                 //Нужно перемещать в папку Корзина
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isFile()){
+                                Files.delete(Path.of(tableView.getSelectionModel().getSelectedItem().getPuth()));
+                                System.out.println("Это файл");
+                                dirname2.clear();
+                                openFileandReadFile();
+                                Thread.interrupted();
+                            }else {
+                                System.out.println("Это директория");
+                            }
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }).start();
             });
-            //Функционал Менюшки
+            /**
+             * Функционал Менюшки
+             */
             {
                 //При нажатий на кнопку открывает всплывающее окно О программе
                 buttonAbout.setOnAction(actionEvent ->
@@ -495,33 +571,46 @@ public class MainController {
                         }
                 );
             }
+            /***
+             * Реализация DragandDrop
+             */
             tableView.setRowFactory(tv -> {
                 Image Lav = new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png");
                 TableRow<nameTable> row = new TableRow<>();
-                row.setOnDragDetected(event -> {
+                row.setOnDragDetected(DragEvent -> {
+                    //System.out.println(tableView.getSelectionModel().getSelectedItem().getNameFile());
+                    Dragboard db = row.startDragAndDrop(TransferMode.ANY);
+                    ClipboardContent content = new ClipboardContent();
                     if(new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isDirectory()){
-                    Dragboard db = row.startDragAndDrop(TransferMode.ANY);;
                     db.setDragView(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
                     /* put a string on dragboard */
-                    ClipboardContent content = new ClipboardContent();
                     content.putImage(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
-                    db.setContent(content);
-                    event.consume();} else {
-                        Dragboard db = row.startDragAndDrop(TransferMode.ANY);;
+                   } else {
                         db.setDragView(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
                         /* put a string on dragboard */
-                        ClipboardContent content = new ClipboardContent();
                         content.putImage(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
-                        db.setContent(content);
-                        event.consume();
-                    }});
-                row.setOnMouseDragged(mouseEvent -> {
-
+                    }
+                    db.setContent(content);
+                    DragEvent.consume();
                 });
-                row.setOnMouseDragEntered(event -> {
-                    System.out.println(tableView.getSelectionModel().getSelectedItem().getNameFile());
+                row.setOnDragOver(DragEvent  -> {
+                    Dragboard db = DragEvent.getDragboard();
+                    DragEvent.acceptTransferModes(TransferMode.ANY);
+                    row.setStyle("-fx-background-color: #a3c6c9 ;");
+                });
+               row.setOnDragExited(event -> {
+                    row.setStyle("-fx-background-color:  ;");});
+                row.setOnDragDone(DragEvent ->{
+
+                    System.out.println(tableView.getSelectionModel().getSelectedItem().getPuth());
+                });
+                row.setOnDragDropped(event -> {
+                    System.out.println(event.getGestureTarget());
+                    event.setDropCompleted(true);
+                    System.out.println(event.getGestureTarget());
                 });
                 return row;
             });
+
         }
     }
