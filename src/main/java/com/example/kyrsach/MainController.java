@@ -1,15 +1,14 @@
 package com.example.kyrsach;
 
-
 import java.awt.*;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
-import java.lang.annotation.Target;
 import java.net.URL;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -24,23 +23,14 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.stage.Stage;
 
-import javax.swing.*;
-
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 
 public class MainController {
@@ -220,36 +210,71 @@ public class MainController {
             alert.membersError("Неккоректный путь.");
         }
     }
+    String timeURLI;
+    public void OpenURLTreeView(String URLI) throws IOException {
+        timeURLI = treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath();
+        if(new File(timeURLI).exists())
+        {
+            fieldURL.setText(timeURLI);
+            dirname2.clear();
+            openFileandReadFile();
+        }else {
+            timeURLI=timeURLI.substring(0,timeURLI.lastIndexOf("\\")+1)+treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getName()+"\\"+treeFile.getSelectionModel().getSelectedItem().getValue().getName();
+            System.out.println(timeURLI);
+            String rrr= treeFile.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getValue().getName();
+            System.out.println(rrr);
 
-    void OpenTreeView(MouseEvent event)  {
+        }
+    }
+
+    void OpenTreeView(MouseEvent event) throws IOException {
         if (event.getButton() == MouseButton.PRIMARY) {
             if (event.getClickCount()==2) {
-                File nonstop = new File(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath());
-                if (nonstop.isFile() == true) {
-                    filemetod.openFile(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath());
-
-                } else {
-                    fieldURL.setText(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath() + "\\");
+                String URLI = String.valueOf(treeFile.getSelectionModel().getSelectedItem().getValue());
+                OpenURLTreeView(URLI);
+                System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath()+"File");
+               /* if( new File(URLI).exists())
+                {
+                    //System.out.println(treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getCanonicalPath()+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getParent().getParent().getValue().getName());
+                    fieldURL.setText(URLI+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getValue().getName());
                     dirname2.clear();
                     openFileandReadFile();
+                }else {
+                    URLI += "\\" + treeFile.getSelectionModel().getSelectedItem().getValue().getName();
+                    if (new File(URLI+"\\" + treeFile.getSelectionModel().getSelectedItem().getValue().getName()).exists()){
+                        URLI += "\\" + treeFile.getSelectionModel().getSelectedItem().getValue().getName();
+                        fieldURL.setText(URLI);
+                        dirname2.clear();
+                        openFileandReadFile();
+                }else {
+                        URLI = treeFile.getSelectionModel().getSelectedItem().getParent().getParent().getValue().getAbsolutePath()+"\\"+treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getName();
+                        System.out.println(treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getCanonicalPath()+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getParent().getParent().getValue().getName());
+                        System.out.println(URLI);
+                        fieldURL.setText(URLI + "\\" + treeFile.getSelectionModel().getSelectedItem().getValue().getName());
+                        dirname2.clear();
+                        openFileandReadFile();
+                    }
+                    System.out.println(treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getCanonicalPath()+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getParent().getParent().getValue().getName());
+                    System.out.println(URLI);
+                }*/
+                  /*  fieldURL.setText(treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getCanonicalPath()+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getValue().getName());
+                    dirname2.clear();
+                    openFileandReadFile()*/;
 
                 }
             }
         }
-    }
 
     /**
      *
      * Функция Open помогает открывать файлы через приложение по умолчанию.
      */
-     void OpenTableView(MouseEvent event) throws Exception
-    {
+     void OpenTableView(MouseEvent event) throws Exception {
          if (event.getButton() == MouseButton.PRIMARY) {
              if (event.getClickCount()==2) {
                      File nonstop = new File(tableView.getSelectionModel().getSelectedItem().getPuth());
                  if (nonstop.isFile() == true) {
                          filemetod.openFile(tableView.getSelectionModel().getSelectedItem().getPuth());
-
                  } else {
                      fieldURL.setText(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\");
                      dirname2.clear();
@@ -296,7 +321,8 @@ public class MainController {
     void initialize() {
             openFileandReadFile2();
             System.out.println(new File( ".//Kyrsovay//System//").getParentFile().getAbsolutePath());
-            createTree(new File(new File(".//Kyrsovay//System//").getParentFile().getAbsolutePath()),romans);
+            createTree(new File(new File("\\Kyrsach\\Kyrsovay\\System").getParent()),romans);
+            System.out.println();
             treeFile.setRoot(romans);
             /**
              * Контекстное меню для tableView
@@ -306,7 +332,7 @@ public class MainController {
             //Контекстное меню
             menuOpen.setOnAction(actionEvent -> {
                 System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getParentFile().getAbsolutePath());
-                String URL1 = new String(fieldURL.getText()+"\\"+treeFile.getSelectionModel().getSelectedItem().getValue().getPath());
+                String URL1 = new String(fieldURL.getText()+"\\"+treeFile.getSelectionModel().getSelectedItem().getValue().getName());
                 System.out.println(URL1);
                 fieldURL.setText(URL1);
                 dirname2.clear();
@@ -326,8 +352,10 @@ public class MainController {
                                 Files.copy(Path.of(copyVal), Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal));
                                 System.out.println("Это файл"+ Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal));
                         }else {
-                                Files.copy(Path.of(copyVal), Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal), REPLACE_EXISTING);
-                                System.out.println("Это директория");
+                                Files.copy(Path.of(copyVal), Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal));
+                                for(File file: new File(copyVal).listFiles()){
+                                Files.copy(Path.of(copyVal), Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal+"\\"+ file.getName()));
+                                System.out.println("Это директория");}
                             }
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -336,7 +364,6 @@ public class MainController {
                 }
                 ).start();
             });
-
             menuRename.setOnAction(actionEvent -> {
                 try {
                     renameFileController re = new renameFileController(tableView.getSelectionModel().getSelectedItem().getPuth());
@@ -348,7 +375,7 @@ public class MainController {
             });
             menuCreateFile.setOnAction(actionEvent -> {
                 try {
-                    filemetod.createFile(treeFile.getSelectionModel().getSelectedItem().getValue());
+                    filemetod.createFile(new File(tableView.getSelectionModel().getSelectedItem().getPuth()));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
