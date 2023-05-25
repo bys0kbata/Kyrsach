@@ -47,9 +47,6 @@ public class TerminalController {
                         textComandTerminalf = null;
                         list.clear();
                         String process;
-                        for (int i = 0; i < words.length ; i++) {
-                                textComandTerminalf += words[i] + "," ;
-                        }
                         Process p = Runtime.getRuntime().exec(textComandTerminal);
                         BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
                         process = input.readLine();

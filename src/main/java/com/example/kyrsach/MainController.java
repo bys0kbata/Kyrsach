@@ -276,7 +276,7 @@ public class MainController {
                  if (nonstop.isFile() == true) {
                          filemetod.openFile(tableView.getSelectionModel().getSelectedItem().getPuth());
                  } else {
-                     fieldURL.setText(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\");
+                     fieldURL.setText(tableView.getSelectionModel().getSelectedItem().getPuth() + "/");
                      dirname2.clear();
                      openFileandReadFile();
 
@@ -321,7 +321,7 @@ public class MainController {
     void initialize() {
             openFileandReadFile2();
             System.out.println(new File( ".//Kyrsovay//System//").getParentFile().getAbsolutePath());
-            createTree(new File(new File("\\Kyrsach\\Kyrsovay\\System").getParent()),romans);
+            createTree(new File(new File("/Kyrsach/Kyrsovay/").getParent()),romans);
             System.out.println();
             treeFile.setRoot(romans);
             /**
@@ -601,7 +601,7 @@ public class MainController {
             /***
              * Реализация DragandDrop
              */
-            tableView.setRowFactory(tv -> {
+            /*tableView.setRowFactory(tv -> {
                 Image Lav = new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png");
                 TableRow<nameTable> row = new TableRow<>();
                 row.setOnDragDetected(DragEvent -> {
@@ -610,11 +610,11 @@ public class MainController {
                     ClipboardContent content = new ClipboardContent();
                     if(new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isDirectory()){
                     db.setDragView(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
-                    /* put a string on dragboard */
+                    *//* put a string on dragboard *//*
                     content.putImage(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
                    } else {
                         db.setDragView(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
-                        /* put a string on dragboard */
+                        *//* put a string on dragboard *//*
                         content.putImage(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
                     }
                     db.setContent(content);
@@ -637,7 +637,7 @@ public class MainController {
                     System.out.println(event.getGestureTarget());
                 });
                 return row;
-            });
+            });*/
 
         }
     }
