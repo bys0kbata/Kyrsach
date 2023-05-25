@@ -89,8 +89,6 @@ public class MainController {
     /**
      * Переменные для функций и сами необходимые функций.
      */
-   /* Image imageFolder = new Image(MainController.class.getResourceAsStream("/com/example/kyrsach/Content/AvatarFolder.png"));
-    Image imageTXT = new Image(MainController.class.getResourceAsStream("/com/example/kyrsach/Content/AvatarTXT.png"));*/
     openWindows open = new openWindows();
     File MainFolder = new File("Kyrsovay//");
     public String dir = MainFolder.getAbsolutePath();
@@ -283,7 +281,6 @@ public class MainController {
     /**
      * Cоздание для листView
      *
-     * @return
      */
     public void creetree(TreeItem parentNode, File file){
         //FileInfo fileInfo=new FileInfo(file);
@@ -362,29 +359,16 @@ public class MainController {
                 }
             });
             menuCreateDir.setOnAction(actionEvent ->{
-                File filemenu = treeFile.getSelectionModel().getSelectedItem().getValue();
-                System.out.println(filemenu.getName());
+                //File filemenu = treeFile.getSelectionModel().getSelectedItem().getValue();
+                try {
+                    filemetod.createFolder(new File(tableView.getSelectionModel().getSelectedItem().getPuth()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                //System.out.println(filemenu.getName());
             });
             menuDelete.setOnAction(actionEvent ->{
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            if (new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isFile()){
-                                Files.delete(Path.of(tableView.getSelectionModel().getSelectedItem().getPuth()));
-                                System.out.println("Это файл");
-                                dirname2.clear();
-                                openFileandReadFile();
-                                Thread.interrupted();
-                            }else {
-                                System.out.println("Это директория");
-                            }
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }).start();
-
+                filemetod.deleteFullFile(tableView.getSelectionModel().getSelectedItem().getPuth());
             });
             menuDeleteBasket.setOnAction(actionEvent ->{
                 //Нужно перемещать в папку Корзина

@@ -1,10 +1,17 @@
 package com.example.kyrsach.Metod;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class metodFile {
+    TextInputDialog text = new TextInputDialog();
 
     public metodFile() {
     }
@@ -12,49 +19,64 @@ public class metodFile {
     File FileVal;
     public void createFile(File name) throws IOException {
         File f = new File(name.getPath().toString() + "//Новый Файл".toString());
-        //Создайте новый файл
-        // Убедитесь, что он не существует
         if (f.createNewFile())
             System.out.println("File created");
         else
             System.out.println("File already exists");
     }
     public void createFolder(File createPathFolder) throws IOException {
-        FileVal = new File(createPathFolder.getPath()+"//Новая папка");
-        FileVal.mkdir();
+        text.setTitle("Переименовать документ");
+        text.setHeaderText("Введите имя: ");
+        text.showAndWait();
+        if (text.getEditor().getText() != " ") {
+            FileVal = new File(createPathFolder.getPath().substring(0, createPathFolder.getPath().lastIndexOf("/")) + text.getEditor().getText());
+            if (FileVal.exists()) {
+                alert.membersError("Файл существует");
+            } else {
+                Process rename = Runtime.getRuntime().exec("mv " + createPathFolder.getPath() + " " + FileVal.getAbsolutePath());
+            }
+        }
     }
-    public void deleteFile()
+    public void deleteFullFile(String deleteVal)
     {
-
-    }
-    public void deleteFolder()
-    {
-
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (new File(deleteVal).isFile()) {
+                        Process p = Runtime.getRuntime().exec("rm " + deleteVal);
+                    } else {
+                        if((new File(deleteVal)).isDirectory()){
+                            Process p = Runtime.getRuntime().exec("rm -rf " + deleteVal);
+                        }
+                    }} catch(IOException e){
+                        throw new RuntimeException(e);
+                    }
+                }
+        }).start();
     }
     public void renameFile()
     {
 
     }
-    public void renameFolder()
-    {
+    public void searchfile(){
 
     }
-    public void copeFile()
+    public void pasteFile(String copyFile)
     {
+        new Thread(new Runnable() {
 
+            @Override
+            public void run() {
+
+            }
+        }).start();
     }
 
     public void openFile(String puth)
     {
         try {
-            Desktop desktop = null;
-            Desktop Desktop;
-            Desktop = null;
-            if (Desktop.isDesktopSupported()) {
-                desktop = Desktop.getDesktop();
-            }
-
-            desktop.open(new File(puth));
+            Process command=Runtime.getRuntime().exec("xdg-open "+puth);
         } catch (IOException ioe) {
             alert.membersError("Нет приложения для открытия такого файла.");
         }
