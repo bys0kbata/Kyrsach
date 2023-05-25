@@ -11,7 +11,7 @@ public class nameTable {
         private String puth;
 
         public nameTable( String nameFile, String sizeFile,Date lastOperationFile,String typeFile,String puth) {
-            this.nameFile = nameFile;
+            this.nameFile = nameFile.substring(nameFile.lastIndexOf("/")+1);
             this.sizeFile = sizeFile;
             this.lastOperationFile = lastOperationFile;
             this.typeFile = typeFile;

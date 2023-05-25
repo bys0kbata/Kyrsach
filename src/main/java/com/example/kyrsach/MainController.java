@@ -2,14 +2,12 @@ package com.example.kyrsach;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.example.kyrsach.Controller.renameFileController;
@@ -20,15 +18,12 @@ import com.example.kyrsach.Metod.openWindows;
 import com.example.kyrsach.ThreadCont.FindFileThread;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.*;
 
 
@@ -286,33 +281,21 @@ public class MainController {
      }
 
     /**
-     *
      * Cоздание для листView
+     *
+     * @return
      */
-    private void createTree(File root_file, TreeItem<File> parent) {
-            if (root_file.isDirectory()) {
-                TreeItem<File> node = new TreeItem<File>(new File(root_file.getName()));
-                parent.getChildren().add(node);
-                for (File f : root_file.listFiles()) {
-                    if (f.isDirectory()) {
-                            TreeItem placeholder = new TreeItem<File>(new File(node.getValue().getAbsolutePath())); // Add TreeItem to make parent expandable even it has no child yet.
-                            node.getChildren().add(placeholder);
-
-                            // When parent is expanded continue the recursive
-                            node.addEventHandler(TreeItem.branchExpandedEvent(), new EventHandler() {
-                                @Override
-                                public void handle(Event event) {
-                                    createTree(f, node); // Continue the recursive as usual
-                                    node.getChildren().remove(placeholder); // Remove placeholder
-                                    node.removeEventHandler(TreeItem.branchExpandedEvent(), this);// Remove event
-
-                                }
-                            });
-                        }
-                }
-            } else {
-                parent.getChildren().add(new TreeItem<File>(new File(root_file.getName())));
+    public void creetree(TreeItem parentNode, File file){
+        //FileInfo fileInfo=new FileInfo(file);
+        if(file.isDirectory()){
+            TreeItem node=new TreeItem(file);
+            node.setExpanded(true);
+            parentNode.getChildren().add(node);
+            for (File subFile : Objects.requireNonNull(file.listFiles())) {
+                creetree(node, subFile);
             }
+        }
+
     }
     public String getRenameVal(){
         return renameVal;
@@ -320,10 +303,8 @@ public class MainController {
         @FXML 
     void initialize() {
             openFileandReadFile2();
-            System.out.println(new File( ".//Kyrsovay//System//").getParentFile().getAbsolutePath());
-            createTree(new File(new File("/Kyrsach/Kyrsovay/").getParent()),romans);
-            System.out.println();
             treeFile.setRoot(romans);
+            creetree(treeFile.getRoot(),new File("/home/denis/Документы/GitHub/Kyrsach/Kyrsovay"));
             /**
              * Контекстное меню для tableView
              *  */

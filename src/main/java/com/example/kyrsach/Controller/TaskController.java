@@ -33,7 +33,7 @@ public class TaskController {
         try {
             list.clear();
             String process;
-            Process p = Runtime.getRuntime().exec("ps ");
+            Process p = Runtime.getRuntime().exec("ps");
             BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));process = input.readLine();
             while ((process = input.readLine()) != null) {
                 list.add(process);// Выписывает результат по строчно
