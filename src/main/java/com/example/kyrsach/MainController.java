@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import com.example.kyrsach.Controller.renameFileController;
 import com.example.kyrsach.Metod.alertMembers;
@@ -109,21 +110,22 @@ public class MainController {
       MenuItem menuDeleteBasket = new MenuItem("Удалить в Корзину");
 
     ObservableList<nameTable> dirname2 = FXCollections.observableArrayList();
+    ObservableList<nameTable> dirname1 = FXCollections.observableArrayList();
     alertMembers alert = new alertMembers();
     FindFileThread FindThread;
 
     private void initData(String nameFile, String sizeFile, Date lastOperationFile, String typeFile, String puth) {
         dirname2.add(new nameTable(nameFile, sizeFile, lastOperationFile, typeFile, puth));
     }
-
+    private void initData1(String nameFile, String sizeFile, Date lastOperationFile, String typeFile, String puth) {
+        dirname1.add(new nameTable(nameFile, sizeFile, lastOperationFile, typeFile, puth));
+    }
     /**
      * Метод openFileandReadFile() присылает все необходимые значение в treeview и tableview
      * и реализует все необходимые для него модификаций.
      */
     TreeItem<File> romans = new TreeItem<File>(new File("Superapp"));
 
-    // romans.getChildren().add(new TreeItem<String>(dirname.substring(dirname.lastIndexOf("\\") + 1)));
-    // treeFile.setRoot(romans);
     public void openFileandReadFile2() {
         Date date;
         String dirname = null;
@@ -282,7 +284,7 @@ public class MainController {
      * Cоздание для листView
      *
      */
-    public void creetree(TreeItem parentNode, File file){
+    public void creetree(TreeItem parentNode,File file){
         //FileInfo fileInfo=new FileInfo(file);
         if(file.isDirectory()){
             TreeItem node=new TreeItem(file);
@@ -294,11 +296,9 @@ public class MainController {
         }
 
     }
-    public String getRenameVal(){
-        return renameVal;
-    }
         @FXML 
     void initialize() {
+            System.out.println(dirname1.size());
             openFileandReadFile2();
             treeFile.setRoot(romans);
             creetree(treeFile.getRoot(),new File("/home/denis/Документы/GitHub/Kyrsach/Kyrsovay"));
@@ -310,7 +310,7 @@ public class MainController {
             //Контекстное меню
             menuOpen.setOnAction(actionEvent -> {
                 System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getParentFile().getAbsolutePath());
-                String URL1 = new String(fieldURL.getText()+"\\"+treeFile.getSelectionModel().getSelectedItem().getValue().getName());
+                String URL1 = fieldURL.getText()+"\\"+treeFile.getSelectionModel().getSelectedItem().getValue().getName();
                 System.out.println(URL1);
                 fieldURL.setText(URL1);
                 dirname2.clear();
@@ -322,31 +322,11 @@ public class MainController {
                 System.out.println(copyVal);
             });
             menuPaste.setOnAction(actionEvent -> {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            if (new File(copyVal).isFile()){
-                                Files.copy(Path.of(copyVal), Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal));
-                                System.out.println("Это файл"+ Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal));
-                        }else {
-                                Files.copy(Path.of(copyVal), Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal));
-                                for(File file: new File(copyVal).listFiles()){
-                                Files.copy(Path.of(copyVal), Path.of(tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal+"\\"+ file.getName()));
-                                System.out.println("Это директория");}
-                            }
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-                ).start();
+                filemetod.pasteFile(copyVal,tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal );
             });
             menuRename.setOnAction(actionEvent -> {
                 try {
-                    renameFileController re = new renameFileController(tableView.getSelectionModel().getSelectedItem().getPuth());
-
-                    open.openWindows("/com/example/kyrsach/Addfolders/renameFile.fxml", "Файл rename", 730, 252);
+                    filemetod.renameFile(new File(tableView.getSelectionModel().getSelectedItem().getPuth()));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -360,11 +340,7 @@ public class MainController {
             });
             menuCreateDir.setOnAction(actionEvent ->{
                 //File filemenu = treeFile.getSelectionModel().getSelectedItem().getValue();
-                try {
-                    filemetod.createFolder(new File(tableView.getSelectionModel().getSelectedItem().getPuth()));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                System.out.println("fff");
                 //System.out.println(filemenu.getName());
             });
             menuDelete.setOnAction(actionEvent ->{

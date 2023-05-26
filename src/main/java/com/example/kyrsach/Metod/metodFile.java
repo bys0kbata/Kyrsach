@@ -18,20 +18,24 @@ public class metodFile {
     alertMembers alert = new alertMembers();
     File FileVal;
     public void createFile(File name) throws IOException {
-        File f = new File(name.getPath().toString() + "//Новый Файл".toString());
-        if (f.createNewFile())
-            System.out.println("File created");
-        else
-            System.out.println("File already exists");
+        text.setTitle("Cоздать документ");
+        text.setHeaderText("Введите имя: ");
+        text.showAndWait();
+        FileVal = new File(name.getPath().substring(0, name.getPath().lastIndexOf("/")) + text.getEditor().getText());
+        if (FileVal.exists()) {
+            alert.membersError("Папка существует, не получится переименовать");
+        } else {
+            Process rename = Runtime.getRuntime().exec("touch " + name.getPath().substring(0, name.getPath().lastIndexOf("/")) + text.getEditor().getText());
+        }
     }
-    public void createFolder(File createPathFolder) throws IOException {
+    public void renameFile(File createPathFolder) throws IOException {
         text.setTitle("Переименовать документ");
         text.setHeaderText("Введите имя: ");
         text.showAndWait();
-        if (text.getEditor().getText() != " ") {
+        if (text.getEditor().getText() != " " ||text.getEditor().getText() != null ) {
             FileVal = new File(createPathFolder.getPath().substring(0, createPathFolder.getPath().lastIndexOf("/")) + text.getEditor().getText());
             if (FileVal.exists()) {
-                alert.membersError("Файл существует");
+                alert.membersError("Папка существует, не получится переименовать");
             } else {
                 Process rename = Runtime.getRuntime().exec("mv " + createPathFolder.getPath() + " " + FileVal.getAbsolutePath());
             }
@@ -55,19 +59,20 @@ public class metodFile {
                 }
         }).start();
     }
-    public void renameFile()
+    public void createFolder()
     {
 
     }
     public void searchfile(){
 
     }
-    public void pasteFile(String copyFile)
+    public void pasteFile(String copyFile, String valURL2)
     {
         new Thread(new Runnable() {
 
             @Override
             public void run() {
+
 
             }
         }).start();
