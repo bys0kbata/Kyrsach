@@ -25,7 +25,7 @@ public class metodFile {
         if (FileVal.exists()) {
             alert.membersError("Папка существует, не получится переименовать");
         } else {
-            Process rename = Runtime.getRuntime().exec("touch " + name.getPath().substring(0, name.getPath().lastIndexOf("/")) + text.getEditor().getText());
+            Process rename = Runtime.getRuntime().exec("touch " + name.getPath()+"/" + text.getEditor().getText());
         }
     }
     public void renameFile(File createPathFolder) throws IOException {
@@ -59,9 +59,16 @@ public class metodFile {
                 }
         }).start();
     }
-    public void createFolder()
-    {
-
+    public void createFolder(File PuthVal) throws IOException {
+        text.setTitle("Cоздать папку");
+        text.setHeaderText("Введите имя: ");
+        text.showAndWait();
+        FileVal = new File(PuthVal.getPath() + "/" + text.getEditor().getText());
+        if (FileVal.exists()) {
+            alert.membersError("Папка существует, не получится переименовать");
+        } else {
+            Process rename = Runtime.getRuntime().exec("touch " + PuthVal.getPath()+"/" + text.getEditor().getText());
+        }
     }
     public void searchfile(){
 
@@ -72,10 +79,20 @@ public class metodFile {
 
             @Override
             public void run() {
-
-
+                try {
+                    if (new File(copyFile).isFile()) {
+                        Process p = Runtime.getRuntime().exec("cp " + copyFile+ " "+ valURL2);
+                    } else {
+                        if((new File(copyFile)).isDirectory()){
+                            Process p = Runtime.getRuntime().exec("cp -rf " + copyFile+ " "+ valURL2);
+                        }
+                    }
+                } catch(IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }).start();
+
+            }).start();
     }
 
     public void openFile(String puth)
