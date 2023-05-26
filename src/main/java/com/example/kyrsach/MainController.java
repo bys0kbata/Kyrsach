@@ -313,7 +313,7 @@ public class MainController {
             //Контекстное меню
             menuOpen.setOnAction(actionEvent -> {
                 System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getParentFile().getAbsolutePath());
-                String URL1 = fieldURL.getText()+"\\"+treeFile.getSelectionModel().getSelectedItem().getValue().getName();
+                String URL1 = fieldURL.getText()+"/"+treeFile.getSelectionModel().getSelectedItem().getValue().getName();
                 System.out.println(URL1);
                 fieldURL.setText(URL1);
                 dirname2.clear();
@@ -325,7 +325,7 @@ public class MainController {
                 System.out.println(copyVal);
             });
             menuPaste.setOnAction(actionEvent -> {
-                filemetod.pasteFile(copyVal,tableView.getSelectionModel().getSelectedItem().getPuth() + "\\" + copyNameVal );
+                filemetod.pasteFile(copyVal,tableView.getSelectionModel().getSelectedItem().getPuth() + "/" + copyNameVal );
             });
             menuRename.setOnAction(actionEvent -> {
                 try {
@@ -372,24 +372,7 @@ public class MainController {
             });
             menuDeleteBasket.setOnAction(actionEvent ->{
                 //Нужно перемещать в папку Корзина
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            if (new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isFile()){
-                                Files.delete(Path.of(tableView.getSelectionModel().getSelectedItem().getPuth()));
-                                System.out.println("Это файл");
-                                dirname2.clear();
-                                openFileandReadFile();
-                                Thread.interrupted();
-                            }else {
-                                System.out.println("Это директория");
-                            }
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }).start();
+
             });
             /**
              * Функционал Менюшки

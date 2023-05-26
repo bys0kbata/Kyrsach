@@ -33,7 +33,7 @@ public class metodFile {
         text.setHeaderText("Введите имя: ");
         text.showAndWait();
         if (text.getEditor().getText() != " " ||text.getEditor().getText() != null ) {
-            FileVal = new File(createPathFolder.getPath().substring(0, createPathFolder.getPath().lastIndexOf("/")) + text.getEditor().getText());
+            FileVal = new File(createPathFolder.getPath()+"/" + text.getEditor().getText());
             if (FileVal.exists()) {
                 alert.membersError("Папка существует, не получится переименовать");
             } else {
