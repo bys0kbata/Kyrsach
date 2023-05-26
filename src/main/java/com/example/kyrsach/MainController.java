@@ -19,6 +19,7 @@ import com.example.kyrsach.Metod.openWindows;
 import com.example.kyrsach.ThreadCont.FindFileThread;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -224,12 +225,45 @@ public class MainController {
 
         }
     }
+    private ArrayList<Path> pathHistory =new ArrayList<>();
+    private int pathHistoryI=0;
+    private boolean isBack=false;
+    @FXML
+    void btnBackAction(ActionEvent event) {
+        try {
+            if (pathHistoryI!=0){
+                pathHistoryI-=1;
+            }
+            fieldURL.setText(pathHistory.get(pathHistoryI).toString());
+            System.out.println(pathHistory.get(pathHistoryI).toString());
+            dirname2.clear();
+            openFileandReadFile();
+            System.out.println(pathHistoryI);
+            isBack=true;
+        }catch (RuntimeException e){}
 
+    }
+
+    @FXML
+    void btnForwardAction(ActionEvent event) {
+        try {
+            if (pathHistoryI < pathHistory.size()){
+                pathHistoryI+=1;
+                fieldURL.setText(pathHistory.get(pathHistoryI).toString());
+                System.out.println(pathHistory.get(pathHistoryI).toString());
+                dirname2.clear();
+                openFileandReadFile();
+                isBack=true;
+            }
+        }catch (RuntimeException e){}
+
+    }
     void OpenTreeView(MouseEvent event) throws IOException {
         if (event.getButton() == MouseButton.PRIMARY) {
             if (event.getClickCount()==2) {
                 String URLI = String.valueOf(treeFile.getSelectionModel().getSelectedItem().getValue());
                 OpenURLTreeView(URLI);
+                pathHistory.add(Paths.get(fieldURL.getText()));
                 System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath()+"File");
                /* if( new File(URLI).exists())
                 {
@@ -277,6 +311,7 @@ public class MainController {
                      fieldURL.setText(tableView.getSelectionModel().getSelectedItem().getPuth() + "/");
                      dirname2.clear();
                      openFileandReadFile();
+                     pathHistory.add(Paths.get(fieldURL.getText()));
 
              }
              }
@@ -316,6 +351,7 @@ public class MainController {
                 String URL1 = fieldURL.getText()+"/"+treeFile.getSelectionModel().getSelectedItem().getValue().getName();
                 System.out.println(URL1);
                 fieldURL.setText(URL1);
+                pathHistory.add(Paths.get(fieldURL.getText()));
                 dirname2.clear();
                 openFileandReadFile();
             });
@@ -419,6 +455,7 @@ public class MainController {
                 if (Event.getCode().equals(KeyCode.ENTER)) {//Условие, что нажалась кнопка Enter
                     dirname2.clear();
                     openFileandReadFile();
+                    pathHistory.add(Paths.get(fieldURL.getText()));
                 }});
             /**
              * Функционал кнопки поиска buttonOpen
@@ -432,6 +469,7 @@ public class MainController {
                 buttonOpen.setOnAction(actionEvent -> {
                     dirname2.clear();
                     openFileandReadFile();
+                    pathHistory.add(Paths.get(fieldURL.getText()));
                 });
                 buttonOpen.setOnMouseExited(
                         mouseEvent -> {
@@ -481,13 +519,6 @@ public class MainController {
                             backButton.setStyle("-fx-background-color: black; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: white;");
                         }
                 );
-                backButton.setOnAction(actionEvent -> {
-                    int i = histiryURL.size()-2;
-                    String URL1 = new String(histiryURL.get(i));
-                    fieldURL.setText(URL1);
-                    dirname2.clear();
-                    openFileandReadFile();
-                });
                 backButton.setOnMouseExited(
                         mouseEvent -> {
                             backButton.setStyle("-fx-background-color: white; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: #464451;");

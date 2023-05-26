@@ -22,6 +22,7 @@ public class metodFile {
         text.setHeaderText("Введите имя: ");
         text.showAndWait();
         FileVal = new File(name.getPath().substring(0, name.getPath().lastIndexOf("/")) + text.getEditor().getText());
+        System.out.println(name.getPath().substring(0, name.getPath().lastIndexOf("/")) + text.getEditor().getText());
         if (FileVal.exists()) {
             alert.membersError("Папка существует, не получится переименовать");
         } else {
@@ -37,6 +38,7 @@ public class metodFile {
             if (FileVal.exists()) {
                 alert.membersError("Папка существует, не получится переименовать");
             } else {
+                System.out.println("mv " + createPathFolder.getPath() + " " + FileVal.getAbsolutePath());
                 Process rename = Runtime.getRuntime().exec("mv " + createPathFolder.getPath() + " " + FileVal.getAbsolutePath());
             }
         }
@@ -67,7 +69,7 @@ public class metodFile {
         if (FileVal.exists()) {
             alert.membersError("Папка существует, не получится переименовать");
         } else {
-            Process rename = Runtime.getRuntime().exec("touch " + PuthVal.getPath()+"/" + text.getEditor().getText());
+            Process rename = Runtime.getRuntime().exec("mkdir " + PuthVal.getPath()+"/" + text.getEditor().getText());
         }
     }
     public void searchfile(){

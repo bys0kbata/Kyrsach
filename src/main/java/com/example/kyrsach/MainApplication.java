@@ -18,7 +18,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 985, 509);
+        Scene scene = new Scene(fxmlLoader.load(), 1078, 509);
         stage.setTitle("Superapp");
         stage.setResizable(false);
         stage.getIcons().add(new Image( MainApplication.class.getResourceAsStream("/com/example/kyrsach/Content/AvatarApp.png")));
