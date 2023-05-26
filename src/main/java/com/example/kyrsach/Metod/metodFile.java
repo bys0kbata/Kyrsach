@@ -39,7 +39,7 @@ public class metodFile {
                 alert.membersError("Папка существует, не получится переименовать");
             } else {
                 System.out.println("mv " + createPathFolder.getPath() + " " + FileVal.getAbsolutePath());
-                Process rename = Runtime.getRuntime().exec("mv " + createPathFolder.getPath() + " " + FileVal.getAbsolutePath());
+                Process rename = Runtime.getRuntime().exec("mv " + FileVal.getAbsolutePath().substring(0,createPathFolder.getPath().lastIndexOf("/")-1) + " "+ createPathFolder.getPath());
             }
         }
     }
