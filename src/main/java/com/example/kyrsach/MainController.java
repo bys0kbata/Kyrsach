@@ -310,10 +310,6 @@ public class MainController {
              *  */
             contextMenu.getItems().addAll(menuOpen, menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile);
             contextMenu.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #464451;");
-            contextMenuTrash.getItems().addAll(menuDelete,menuRestored);
-            contextMenuSystem.getItems().addAll(menuOpen);
-            contextMenuSystem.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #464451;");
-            contextMenuTrash.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #464451;");
             //Контекстное меню
             menuOpen.setOnAction(actionEvent -> {
                 System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getParentFile().getAbsolutePath());
@@ -460,27 +456,18 @@ public class MainController {
                 {
                     if(mouseEvent.getClickCount() == 1)
                     {
-                        if(fieldURL.getText() == "/home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash" )
-                        {
-                            Point location = MouseInfo.getPointerInfo().getLocation();
-                            contextMenuTrash.show(tableView,location.getX(),location.getY());
-                        } else if (fieldURL.getText() == "/home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System") {
-                            Point location = MouseInfo.getPointerInfo().getLocation();
-                            contextMenuSystem.show(tableView,location.getX(),location.getY());
-                        }else {
                         Point location = MouseInfo.getPointerInfo().getLocation();
                         contextMenu.show(tableView,location.getX(),location.getY());
                     }
                 }else {
                     try {
                         contextMenu.hide();
-                        contextMenuTrash.hide();
                         OpenTableView(mouseEvent);
                     } catch (Exception e) {
                         alert.membersError("Нет приложения для открытия такого файла.");
                     }
                 }
-            }});
+            });
             /**
              * Функционал кнопки  backButton
              */
