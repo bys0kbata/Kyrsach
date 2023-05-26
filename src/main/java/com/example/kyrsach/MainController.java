@@ -347,7 +347,28 @@ public class MainController {
                 //System.out.println(filemenu.getName());
             });
             menuDelete.setOnAction(actionEvent ->{
-                filemetod.deleteFullFile(tableView.getSelectionModel().getSelectedItem().getPuth());
+                if(new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isDirectory()) {
+                    filemetod.deleteFullFile(tableView.getSelectionModel().getSelectedItem().getPuth());
+                }else {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                if (new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isFile()){
+                                    Files.delete(Path.of(tableView.getSelectionModel().getSelectedItem().getPuth()));
+                                    System.out.println("Это файл");
+                                    Thread.interrupted();
+                                }else {
+                                    System.out.println("Это директория");
+                                }
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }).start();
+                }
+                dirname2.clear();
+                openFileandReadFile();
             });
             menuDeleteBasket.setOnAction(actionEvent ->{
                 //Нужно перемещать в папку Корзина
