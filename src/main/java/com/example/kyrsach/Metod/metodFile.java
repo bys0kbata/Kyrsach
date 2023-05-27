@@ -3,6 +3,7 @@ package com.example.kyrsach.Metod;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.stage.FileChooser;
 
 import java.awt.*;
 import java.io.File;
@@ -119,5 +120,13 @@ public class metodFile {
             }
         }
         return result; // will return null if we didn't find anything
+    }
+    public void MessengerStandart(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open File");
+        File file = fileChooser.showOpenDialog(null);
+    }
+    public void TerminalOpen() throws IOException {
+        Process p = Runtime.getRuntime().exec("gnome-terminal");
     }
 }

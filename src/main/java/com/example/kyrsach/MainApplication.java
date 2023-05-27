@@ -1,5 +1,6 @@
 package com.example.kyrsach;
 
+import com.example.kyrsach.Metod.metodFile;
 import com.example.kyrsach.Metod.openWindows;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -62,7 +63,17 @@ public class MainApplication extends Application {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            }
+            }else if (event.isControlDown() && event.getCode() == KeyCode.E) {
+                    metodFile file = new metodFile();
+                    file.MessengerStandart();
+                }else if (event.isControlDown() && event.getCode() == KeyCode.I) {
+                    metodFile file = new metodFile();
+                    try {
+                        file.TerminalOpen();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         });
     }
