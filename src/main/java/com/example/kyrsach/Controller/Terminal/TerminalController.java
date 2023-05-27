@@ -26,7 +26,8 @@ public class TerminalController {
 
         @FXML
         private Button CompBut;
-
+        @FXML
+        private Button CompBut1;
         @FXML
         private MenuItem HelpBut;
         @FXML
@@ -42,11 +43,15 @@ public class TerminalController {
                ProcessList();
                System.out.println(textComandTerminal);
         }
+        @FXML
+        public void clearComandTerminal() {
+                list.clear();
+        }
         public void ProcessList(){
                 try {
-                        textComandTerminalf = null;
-                        list.clear();
+                        //list.clear();
                         String process;
+                        list.add("- - - Ваша команда: "+textComandTerminal+ " - - -");
                         Process p = Runtime.getRuntime().exec(textComandTerminal);
                         BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
                         process = input.readLine();
@@ -57,13 +62,14 @@ public class TerminalController {
                                 System.out.println(process);
                         }
                         input.close();
+                        String proces123 = "Команда выполнена";
+                        list.add(proces123);
                         ListTerminalView.setItems(list);
 
                 } catch (Exception err) {
                         String process = "Не удалось выполнить команду.";
                         list.add(process);
                         ListTerminalView.setItems(list);
-                        err.printStackTrace();
                 }
         }
         @FXML

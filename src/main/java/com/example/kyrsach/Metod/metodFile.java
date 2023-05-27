@@ -121,6 +121,12 @@ public class metodFile {
         }
         return result; // will return null if we didn't find anything
     }
+    public void RestorObject(String url){
+
+    }
+    public void deleteinBasket(String url){
+
+    }
     public void MessengerStandart(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");

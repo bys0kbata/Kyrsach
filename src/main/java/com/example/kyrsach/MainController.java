@@ -114,15 +114,11 @@ public class MainController {
       MenuItem menuDeleteBasket = new MenuItem("Удалить в Корзину");
 
     ObservableList<nameTable> dirname2 = FXCollections.observableArrayList();
-    ObservableList<nameTable> dirname1 = FXCollections.observableArrayList();
     alertMembers alert = new alertMembers();
     FindFileThread FindThread;
 
     private void initData(String nameFile, String sizeFile, Date lastOperationFile, String typeFile, String puth) {
         dirname2.add(new nameTable(nameFile, sizeFile, lastOperationFile, typeFile, puth));
-    }
-    private void initData1(String nameFile, String sizeFile, Date lastOperationFile, String typeFile, String puth) {
-        dirname1.add(new nameTable(nameFile, sizeFile, lastOperationFile, typeFile, puth));
     }
     /**
      * Метод openFileandReadFile() присылает все необходимые значение в treeview и tableview
@@ -265,33 +261,7 @@ public class MainController {
                 OpenURLTreeView(URLI);
                 pathHistory.add(Paths.get(fieldURL.getText()));
                 System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getAbsolutePath()+"File");
-               /* if( new File(URLI).exists())
-                {
-                    //System.out.println(treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getCanonicalPath()+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getParent().getParent().getValue().getName());
-                    fieldURL.setText(URLI+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getValue().getName());
-                    dirname2.clear();
-                    openFileandReadFile();
-                }else {
-                    URLI += "\\" + treeFile.getSelectionModel().getSelectedItem().getValue().getName();
-                    if (new File(URLI+"\\" + treeFile.getSelectionModel().getSelectedItem().getValue().getName()).exists()){
-                        URLI += "\\" + treeFile.getSelectionModel().getSelectedItem().getValue().getName();
-                        fieldURL.setText(URLI);
-                        dirname2.clear();
-                        openFileandReadFile();
-                }else {
-                        URLI = treeFile.getSelectionModel().getSelectedItem().getParent().getParent().getValue().getAbsolutePath()+"\\"+treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getName();
-                        System.out.println(treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getCanonicalPath()+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getParent().getParent().getValue().getName());
-                        System.out.println(URLI);
-                        fieldURL.setText(URLI + "\\" + treeFile.getSelectionModel().getSelectedItem().getValue().getName());
-                        dirname2.clear();
-                        openFileandReadFile();
-                    }
-                    System.out.println(treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getCanonicalPath()+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getParent().getParent().getValue().getName());
-                    System.out.println(URLI);
-                }*/
-                  /*  fieldURL.setText(treeFile.getSelectionModel().getSelectedItem().getParent().getValue().getCanonicalPath()+ "\\"+ treeFile.getSelectionModel().getSelectedItem().getValue().getName());
-                    dirname2.clear();
-                    openFileandReadFile()*/;
+
 
                 }
             }
@@ -336,7 +306,6 @@ public class MainController {
     }
         @FXML 
     void initialize() {
-            System.out.println(dirname1.size());
             openFileandReadFile2();
             treeFile.setRoot(romans);
             creetree(treeFile.getRoot(),new File("/home/denis/Документы/GitHub/Kyrsach/Kyrsovay"));

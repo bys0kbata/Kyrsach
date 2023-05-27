@@ -11,9 +11,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kyrsach.Controller.Terminal.TerminalController">
    <top>
-      <MenuBar style="-fx-border-color: #464451; -fx-background-color: #B5B8B1;" BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="32.0" prefWidth="566.0" style="-fx-border-color: #464451; -fx-background-color: #B5B8B1;" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: #464451; -fx-background-radius: 20;" text="Help">
             <items>
               <MenuItem fx:id="HelpBut" mnemonicParsing="false" text="About" />
             </items>
@@ -24,8 +24,9 @@
    <bottom>
       <AnchorPane prefHeight="34.0" prefWidth="600.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="ComandTerminal" layoutX="31.0" layoutY="2.0" prefHeight="25.0" prefWidth="435.0" promptText="Введите команду /help, чтобы открыть мануал по командам" style="-fx-border-color: #464451; -fx-background-radius: 20; -fx-border-radius: 20;" />
+            <TextField fx:id="ComandTerminal" layoutX="98.0" layoutY="2.0" prefHeight="27.0" prefWidth="368.0" promptText="Введите команду /help, чтобы открыть мануал по командам" style="-fx-border-color: #464451; -fx-background-radius: 20; -fx-border-radius: 20;" />
             <Button fx:id="CompBut" layoutX="473.0" layoutY="2.0" mnemonicParsing="false" onAction="#getComandTerminal" style="-fx-background-color: white; -fx-border-color: #464451; -fx-border-radius: 20; -fx-background-radius: 20;" text="Выполнить" />
+            <Button fx:id="CompBut1" layoutX="20.0" layoutY="1.0" mnemonicParsing="false" onAction="#clearComandTerminal" style="-fx-background-color: white; -fx-border-color: #464451; -fx-border-radius: 20; -fx-background-radius: 20;" text="Очистить" />
          </children>
       </AnchorPane>
    </bottom>
