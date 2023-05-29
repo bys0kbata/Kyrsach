@@ -14,8 +14,9 @@ import java.io.IOException;
 
 
 public class openWindows {
-
+    LogFile log =   new LogFile();
     public void openWindows(String url, String text, int sizeOne,int sizeTwo) throws IOException {
+        log.writeFile("Открыли окно " + text);
         Parent root;
         Stage stage = new Stage();
         root = FXMLLoader.load(getClass().getResource(url));

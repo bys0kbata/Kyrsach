@@ -12,10 +12,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.example.kyrsach.Controller.renameFileController;
-import com.example.kyrsach.Metod.alertMembers;
-import com.example.kyrsach.Metod.metodFile;
-import com.example.kyrsach.Metod.nameTable;
-import com.example.kyrsach.Metod.openWindows;
+import com.example.kyrsach.Metod.*;
 import com.example.kyrsach.ThreadCont.FindFileThread;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -91,6 +88,7 @@ public class MainController {
     /**
      * Переменные для функций и сами необходимые функций.
      */
+    LogFile log = new LogFile();
     openWindows open = new openWindows();
     File MainFolder = new File("Kyrsovay//");
     public String dir = MainFolder.getAbsolutePath();
@@ -347,9 +345,7 @@ public class MainController {
                 }
             });
             menuCreateDir.setOnAction(actionEvent ->{
-                //File filemenu = treeFile.getSelectionModel().getSelectedItem().getValue();
                 System.out.println("fff");
-                //System.out.println(filemenu.getName());
             });
             menuDelete.setOnAction(actionEvent ->{
                 if(new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isDirectory()) {

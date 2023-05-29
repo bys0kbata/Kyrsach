@@ -1,20 +1,49 @@
 package com.example.kyrsach.Metod;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.Objects;
+
 
 public class metodFile {
     TextInputDialog text = new TextInputDialog();
+    File root= new File("D:/Kyrsach/Kyrsovay");
+    private Boolean protect(File file){
+        System.out.println(root.getAbsolutePath());
+        if (!Objects.isNull(file) && (file.toString().startsWith(new File(root+"/System").toString())
+                ||file.toString().startsWith(new File(root+"/Trash").toString())))
+        {
+            Alert alert=new Alert(Alert.AlertType.ERROR,"Нельзя удалиь сиситемные папки", ButtonType.OK);
+            alert.showAndWait();
+            throw new RuntimeException("Нельзя удалить системные папки");
+        }else {
+            return true;
+        }
+    }
 
     public metodFile() {
+    }
+    public void moveFile(File copyFiles){
+        File source=new File(copyFiles.toURI());
+        if (protect(source)){
+            String command = "mv " + source + " " + source;
+
+            // Создание процесса для выполнения команды в терминале
+            ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", command);
+
+            // Запуск процесса и ожидание завершения
+            try {
+                Process process = processBuilder.start();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
     }
     alertMembers alert = new alertMembers();
     File FileVal;
@@ -34,18 +63,23 @@ public class metodFile {
         text.setTitle("Переименовать документ");
         text.setHeaderText("Введите имя: ");
         text.showAndWait();
+        if(protect(createPathFolder)){
         if (text.getEditor().getText() != " " ||text.getEditor().getText() != null ) {
             FileVal = new File(createPathFolder.getPath()+"/" + text.getEditor().getText());
             if (FileVal.exists()) {
                 alert.membersError("Папка существует, не получится переименовать");
             } else {
-                System.out.println("mv " + createPathFolder.getPath() + " " + FileVal.getAbsolutePath());
-                Process rename = Runtime.getRuntime().exec("mv " + FileVal.getAbsolutePath().substring(0,createPathFolder.getPath().lastIndexOf("/")-1) + " "+ createPathFolder.getPath());
+                System.out.println("Файл переименовался");
+                createPathFolder.renameTo(FileVal);
             }
+        }
+        }else {
+            alert.membersError("Нельзя переименовать папку");
         }
     }
     public void deleteFullFile(String deleteVal)
     {
+        if (protect(new File(deleteVal))){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -62,6 +96,7 @@ public class metodFile {
                 }
         }).start();
     }
+    }
     public void createFolder(File PuthVal) throws IOException {
         text.setTitle("Cоздать папку");
         text.setHeaderText("Введите имя: ");
@@ -73,9 +108,22 @@ public class metodFile {
             Process rename = Runtime.getRuntime().exec("mkdir " + PuthVal.getPath()+"/" + text.getEditor().getText());
         }
     }
-    public void searchfile(){
+  /*  public List<nameTable> searchFiles(Path directory, String query) {
+            List<nameTable> searchResults = new ArrayList<>();
+            List<Path> testpath = new ArrayList<>();
 
-    }
+            try {
+                Files.walk(directory)
+                        .filter(path -> path.getFileName().toString().contains(query))
+                        .forEach(path -> searchResults.add());
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Обработка ошибки при доступе к файлам
+            }
+
+            return searchResults;
+        }
+    }*/
     public void pasteFile(String copyFile, String valURL2)
     {
         new Thread(new Runnable() {

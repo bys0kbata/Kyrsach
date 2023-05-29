@@ -33,8 +33,9 @@ public class TaskController {
         try {
             list.clear();
             String process;
-            Process p = Runtime.getRuntime().exec("ps");
-            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));process = input.readLine();
+            Process p = Runtime.getRuntime().exec("ps -C java -o pid,user,lstart,cmd");
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            process = input.readLine();
             while ((process = input.readLine()) != null) {
                 list.add(process);// Выписывает результат по строчно
             }

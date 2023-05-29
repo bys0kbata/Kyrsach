@@ -1,5 +1,6 @@
 package com.example.kyrsach.Controller.Terminal;
 
+import com.example.kyrsach.Metod.openWindows;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Arrays;
@@ -32,6 +34,7 @@ public class TerminalController {
         private MenuItem HelpBut;
         @FXML
         private ListView<String> ListTerminalView;
+        openWindows open = new openWindows();
         ObservableList<String> list = FXCollections.observableArrayList();
         String textComandTerminal;
         String textComandTerminalf;
@@ -74,7 +77,13 @@ public class TerminalController {
         }
         @FXML
         void initialize() {
-
+                HelpBut.setOnAction(event -> {
+                        try {
+                                open.openWindows("/com/example/kyrsach/Addfolders/TerminalHelp.fxml", "Команды терминала", 420, 425);
+                        } catch (IOException e) {
+                                throw new RuntimeException(e);
+                        }
+                });
 
         }
 

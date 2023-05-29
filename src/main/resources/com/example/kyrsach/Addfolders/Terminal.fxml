@@ -15,7 +15,7 @@
         <menus>
           <Menu mnemonicParsing="false" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: #464451; -fx-background-radius: 20;" text="Help">
             <items>
-              <MenuItem fx:id="HelpBut" mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="HelpBut" mnemonicParsing="false" text="Open" />
             </items>
           </Menu>
         </menus>
