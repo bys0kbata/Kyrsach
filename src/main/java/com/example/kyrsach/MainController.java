@@ -101,7 +101,7 @@ public class MainController {
     ContextMenu contextMenuTrash = new ContextMenu();
     ContextMenu contextMenuSystem = new ContextMenu();
      //Cоздание контекстного меню, который будет выплываться через правую кнопку мыши
-      MenuItem menuOpen = new MenuItem("Открыть");//Создание элемента в контекстном меню с названием.
+     //Создание элемента в контекстном меню с названием.
       MenuItem menuCreateDir = new MenuItem("Создать Директорию");
       MenuItem menuRestored = new MenuItem("Восстановить");
       MenuItem menuCreateFile = new MenuItem("Создать Файл");
@@ -302,26 +302,19 @@ public class MainController {
         }
 
     }
+    String root = "/home/denis/Документы/GitHub/Kyrsach/Kyrsovay";
         @FXML 
     void initialize() {
+        pathHistory.add(0, Path.of(root));
             openFileandReadFile2();
             treeFile.setRoot(romans);
-            creetree(treeFile.getRoot(),new File("/home/denis/Документы/GitHub/Kyrsach/Kyrsovay"));
+            creetree(treeFile.getRoot(),new File(root));
             /**
              * Контекстное меню для tableView
              *  */
-            contextMenu.getItems().addAll(menuOpen, menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile);
+            contextMenu.getItems().addAll(menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile);
             contextMenu.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #464451;");
             //Контекстное меню
-            menuOpen.setOnAction(actionEvent -> {
-                System.out.println(treeFile.getSelectionModel().getSelectedItem().getValue().getParentFile().getAbsolutePath());
-                String URL1 = fieldURL.getText()+"/"+treeFile.getSelectionModel().getSelectedItem().getValue().getName();
-                System.out.println(URL1);
-                fieldURL.setText(URL1);
-                pathHistory.add(Paths.get(fieldURL.getText()));
-                dirname2.clear();
-                openFileandReadFile();
-            });
             menuСopy.setOnAction(actionEvent -> {
                 copyVal = tableView.getSelectionModel().getSelectedItem().getPuth();
                 copyNameVal = tableView.getSelectionModel().getSelectedItem().getNameFile();
@@ -345,7 +338,11 @@ public class MainController {
                 }
             });
             menuCreateDir.setOnAction(actionEvent ->{
-                System.out.println("fff");
+                try {
+                    filemetod.createFolder(new File(tableView.getSelectionModel().getSelectedItem().getPuth()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
             menuDelete.setOnAction(actionEvent ->{
                 if(new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isDirectory()) {
@@ -373,7 +370,11 @@ public class MainController {
             });
             menuDeleteBasket.setOnAction(actionEvent ->{
                 //Нужно перемещать в папку Корзина
-
+                try {
+                    filemetod.deleteinBasket(tableView.getSelectionModel().getSelectedItem().getPuth());
+                } catch (IOException e) {
+                    System.out.println("Печаль");
+                }
             });
             /**
              * Функционал Менюшки

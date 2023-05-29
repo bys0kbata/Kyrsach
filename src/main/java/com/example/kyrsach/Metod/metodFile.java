@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class metodFile {
     TextInputDialog text = new TextInputDialog();
-    File root= new File("D:/Kyrsach/Kyrsovay");
+    File root= new File("/home/denis/Документы/GitHub/Kyrsach/Kyrsovay");
     private Boolean protect(File file){
         System.out.println(root.getAbsolutePath());
         if (!Objects.isNull(file) && (file.toString().startsWith(new File(root+"/System").toString())
@@ -63,9 +63,10 @@ public class metodFile {
         text.setTitle("Переименовать документ");
         text.setHeaderText("Введите имя: ");
         text.showAndWait();
+        System.out.println(createPathFolder.getPath()+"/" + text.getEditor().getText());
         if(protect(createPathFolder)){
         if (text.getEditor().getText() != " " ||text.getEditor().getText() != null ) {
-            FileVal = new File(createPathFolder.getPath()+"/" + text.getEditor().getText());
+            FileVal = new File(createPathFolder.getPath().substring(0,createPathFolder.getPath().lastIndexOf("/")+1) + text.getEditor().getText());
             if (FileVal.exists()) {
                 alert.membersError("Папка существует, не получится переименовать");
             } else {
@@ -101,6 +102,7 @@ public class metodFile {
         text.setTitle("Cоздать папку");
         text.setHeaderText("Введите имя: ");
         text.showAndWait();
+        System.out.println(PuthVal.getPath() + "/" + text.getEditor().getText());
         FileVal = new File(PuthVal.getPath() + "/" + text.getEditor().getText());
         if (FileVal.exists()) {
             alert.membersError("Папка существует, не получится переименовать");
@@ -172,9 +174,18 @@ public class metodFile {
     public void RestorObject(String url){
 
     }
-    public void deleteinBasket(String url){
-
+    public void deleteinBasket(String url) throws IOException {
+        if (protect(new File(url))){
+        File urlq = new File(url);
+        Process command=Runtime.getRuntime().exec("mv "+ url +" "+root+"/Trash/"+urlq.getName());}
+        else {
+            alert.membersError("Нельзя удалить файл в корзину");
+        }
     }
+    public void returninBasket(String url) throws IOException {
+        File urlq = new File(url);
+        Process command=Runtime.getRuntime().exec("mv "+ url +" "+root+"/Restored objects/"+urlq.getName());}
+    
     public void MessengerStandart(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");

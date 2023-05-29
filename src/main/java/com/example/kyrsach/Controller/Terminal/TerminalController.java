@@ -37,7 +37,6 @@ public class TerminalController {
         openWindows open = new openWindows();
         ObservableList<String> list = FXCollections.observableArrayList();
         String textComandTerminal;
-        String textComandTerminalf;
         String[] words;
         @FXML
         public void getComandTerminal() {

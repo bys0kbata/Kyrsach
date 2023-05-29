@@ -17,7 +17,7 @@ public class Fleashka {
 
     private static boolean isFlashDriveInserted() {
         try {
-            Process process = Runtime.getRuntime().exec("lsblk -o NAME,TYPE");
+            Process process = Runtime.getRuntime().exec("ls -l /dev/disk/by-id/usb*");
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
             String line;
