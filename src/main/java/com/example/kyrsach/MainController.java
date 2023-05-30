@@ -41,6 +41,8 @@ public class MainController {
     private MenuItem buttonAbout; //Кнопка из меню "О программе"
 
     @FXML
+    private MenuItem WinTest;
+    @FXML
     private MenuItem buttonAgry;//Кнопка из меню "О программе"
     @FXML
     private MenuItem buttonStartTask;//Кнопка из меню "Запуск Диспетчера задач"
@@ -110,6 +112,11 @@ public class MainController {
       MenuItem menuСopy = new MenuItem("Копировать");
       MenuItem menuPaste = new MenuItem("Вставить");
       MenuItem menuDeleteBasket = new MenuItem("Удалить в Корзину");
+    @FXML
+    private MenuItem FSLocal;
+
+    @FXML
+    private MenuItem TerminalLocal;
 
     ObservableList<nameTable> dirname2 = FXCollections.observableArrayList();
     alertMembers alert = new alertMembers();
@@ -167,9 +174,11 @@ public class MainController {
     public void openFileandReadFile() {
         Date date;
         dir = fieldURL.getText().toString();
+        log.writeFile("Открыли путь: "+ dir);
         String dirname = null;
         String type;
         String size12;
+        if (!Objects.isNull(dir) && (dir.toString().startsWith(new File(root).toString()))){
         File[] files = new File(dir).listFiles();
         try {
             for (File file : files) {
@@ -199,7 +208,10 @@ public class MainController {
             tableView.setItems(dirname2);
             fieldURL.setText(dir);
             histiryURL.add(fieldURL.getText());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
+            alert.membersError("Неккоректный путь.");}
+        } else {
             alert.membersError("Неккоректный путь.");
         }
     }
@@ -312,7 +324,7 @@ public class MainController {
             /**
              * Контекстное меню для tableView
              *  */
-            contextMenu.getItems().addAll(menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile);
+            contextMenu.getItems().addAll(menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile, menuRestored);
             contextMenu.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #464451;");
             //Контекстное меню
             menuСopy.setOnAction(actionEvent -> {
@@ -374,6 +386,13 @@ public class MainController {
                     filemetod.deleteinBasket(tableView.getSelectionModel().getSelectedItem().getPuth());
                 } catch (IOException e) {
                     System.out.println("Печаль");
+                }
+            });
+            menuRestored.setOnAction(actionEvent -> {
+                try {
+                    filemetod.returninBasket(tableView.getSelectionModel().getSelectedItem().getPuth());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             });
             /**
@@ -446,8 +465,8 @@ public class MainController {
             treeFile.setOnMouseClicked(mouseEvent -> {
                     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                         if (mouseEvent.getClickCount() == 1) {
-                            Point location = MouseInfo.getPointerInfo().getLocation();
-                            contextMenu.show(treeFile, location.getX(), location.getY());
+                            //Point location = MouseInfo.getPointerInfo().getLocation();
+                            // contextMenu.show(treeFile, location.getX(), location.getY());
                         }
                     }else {
                         try {
@@ -543,24 +562,39 @@ public class MainController {
                         }
                 );
             }
+            FSLocal.setOnAction(event -> {
+                filemetod.MessengerStandart();
+            });
+            TerminalLocal.setOnAction(event -> {
+                try {
+                    filemetod.TerminalOpen();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            WinTest.setOnAction(event -> {
+
+            });
             /***
              * Реализация DragandDrop
              */
-            /*tableView.setRowFactory(tv -> {
-                Image Lav = new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png");
+            tableView.setRowFactory(tv -> {
+                javafx.scene.image.Image Lav = new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png");
                 TableRow<nameTable> row = new TableRow<>();
                 row.setOnDragDetected(DragEvent -> {
                     //System.out.println(tableView.getSelectionModel().getSelectedItem().getNameFile());
+                    copyVal = tableView.getSelectionModel().getSelectedItem().getPuth();
+                    copyNameVal = tableView.getSelectionModel().getSelectedItem().getNameFile();
                     Dragboard db = row.startDragAndDrop(TransferMode.ANY);
                     ClipboardContent content = new ClipboardContent();
                     if(new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isDirectory()){
-                    db.setDragView(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
-                    *//* put a string on dragboard *//*
-                    content.putImage(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
+                    db.setDragView(new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
+                    /* put a string on dragboard */
+                    content.putImage(new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
                    } else {
-                        db.setDragView(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
-                        *//* put a string on dragboard *//*
-                        content.putImage(new Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
+                        db.setDragView(new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
+                        /* put a string on dragboard */
+                        content.putImage(new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
                     }
                     db.setContent(content);
                     DragEvent.consume();
@@ -574,15 +608,16 @@ public class MainController {
                     row.setStyle("-fx-background-color:  ;");});
                 row.setOnDragDone(DragEvent ->{
 
-                    System.out.println(tableView.getSelectionModel().getSelectedItem().getPuth());
+                    System.out.println(row.getItem().getNameFile());
                 });
                 row.setOnDragDropped(event -> {
-                    System.out.println(event.getGestureTarget());
+                    System.out.println(row.getItem().getNameFile());
                     event.setDropCompleted(true);
-                    System.out.println(event.getGestureTarget());
+                    System.out.println(row.getItem().getPuth());
+                    filemetod.pasteFile(copyVal,tableView.getSelectionModel().getSelectedItem().getPuth() + "/" + copyNameVal);
                 });
                 return row;
-            });*/
+            });
 
         }
     }

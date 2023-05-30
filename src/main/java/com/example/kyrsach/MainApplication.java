@@ -43,11 +43,6 @@ public class MainApplication extends Application {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                }else if (event.isControlDown() && event.getCode() == KeyCode.C)
-                {
-
-                } else if (event.isControlDown() && event.getCode() == KeyCode.V)
-                {
 
                 }else if (event.isControlDown() && event.getCode() == KeyCode.D)
                 {

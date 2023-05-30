@@ -12,6 +12,7 @@ import java.util.Objects;
 
 public class metodFile {
     TextInputDialog text = new TextInputDialog();
+    LogFile log = new LogFile();
     File root= new File("/home/denis/Документы/GitHub/Kyrsach/Kyrsovay");
     private Boolean protect(File file){
         System.out.println(root.getAbsolutePath());
@@ -51,6 +52,7 @@ public class metodFile {
         text.setTitle("Cоздать документ");
         text.setHeaderText("Введите имя: ");
         text.showAndWait();
+        log.writeFile("Создали файл с названием: "+ text.getEditor().getText() );
         FileVal = new File(name.getPath().substring(0, name.getPath().lastIndexOf("/")) + text.getEditor().getText());
         System.out.println(name.getPath().substring(0, name.getPath().lastIndexOf("/")) + text.getEditor().getText());
         if (FileVal.exists()) {
@@ -63,6 +65,7 @@ public class metodFile {
         text.setTitle("Переименовать документ");
         text.setHeaderText("Введите имя: ");
         text.showAndWait();
+        log.writeFile("Переименовали файл с названием: "+ text.getEditor().getText());
         System.out.println(createPathFolder.getPath()+"/" + text.getEditor().getText());
         if(protect(createPathFolder)){
         if (text.getEditor().getText() != " " ||text.getEditor().getText() != null ) {
@@ -81,6 +84,7 @@ public class metodFile {
     public void deleteFullFile(String deleteVal)
     {
         if (protect(new File(deleteVal))){
+            log.writeFile("Удалили объект с путем: "+ deleteVal);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -102,7 +106,7 @@ public class metodFile {
         text.setTitle("Cоздать папку");
         text.setHeaderText("Введите имя: ");
         text.showAndWait();
-        System.out.println(PuthVal.getPath() + "/" + text.getEditor().getText());
+        log.writeFile("Создали папку с названием: "+ text.getEditor().getText() );
         FileVal = new File(PuthVal.getPath() + "/" + text.getEditor().getText());
         if (FileVal.exists()) {
             alert.membersError("Папка существует, не получится переименовать");
@@ -128,6 +132,7 @@ public class metodFile {
     }*/
     public void pasteFile(String copyFile, String valURL2)
     {
+        log.writeFile("Вставили файл с путем: "+ valURL2 );
         new Thread(new Runnable() {
 
             @Override
@@ -152,6 +157,7 @@ public class metodFile {
     {
         try {
             Process command=Runtime.getRuntime().exec("xdg-open "+puth);
+            log.writeFile("Открыли файл с путем: "+ puth );
         } catch (IOException ioe) {
             alert.membersError("Нет приложения для открытия такого файла.");
         }
@@ -171,12 +177,10 @@ public class metodFile {
         }
         return result; // will return null if we didn't find anything
     }
-    public void RestorObject(String url){
-
-    }
     public void deleteinBasket(String url) throws IOException {
         if (protect(new File(url))){
         File urlq = new File(url);
+        log.writeFile("Удалили файл в корзину с названием: "+ urlq.getName() );
         Process command=Runtime.getRuntime().exec("mv "+ url +" "+root+"/Trash/"+urlq.getName());}
         else {
             alert.membersError("Нельзя удалить файл в корзину");
@@ -184,14 +188,17 @@ public class metodFile {
     }
     public void returninBasket(String url) throws IOException {
         File urlq = new File(url);
+        log.writeFile("Вернули файл с корзины с названием: "+ urlq.getName() );
         Process command=Runtime.getRuntime().exec("mv "+ url +" "+root+"/Restored objects/"+urlq.getName());}
     
     public void MessengerStandart(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
+        log.writeFile("Открыли локальный файловый менджер" );
         File file = fileChooser.showOpenDialog(null);
     }
     public void TerminalOpen() throws IOException {
+        log.writeFile("Открыли локальный терминал");
         Process p = Runtime.getRuntime().exec("gnome-terminal");
     }
 }
