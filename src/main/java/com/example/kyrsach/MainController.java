@@ -579,7 +579,7 @@ public class MainController {
              * Реализация DragandDrop
              */
             tableView.setRowFactory(tv -> {
-                javafx.scene.image.Image Lav = new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png");
+                //javafx.scene.image.Image Lav = new javafx.scene.image.Image("src/main/resources/com/example/kyrsach/Content/AvatarFolder_photo-resizer.ru.png");
                 TableRow<nameTable> row = new TableRow<>();
                 row.setOnDragDetected(DragEvent -> {
                     //System.out.println(tableView.getSelectionModel().getSelectedItem().getNameFile());
@@ -588,13 +588,13 @@ public class MainController {
                     Dragboard db = row.startDragAndDrop(TransferMode.ANY);
                     ClipboardContent content = new ClipboardContent();
                     if(new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isDirectory()){
-                    db.setDragView(new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
+                    db.setDragView(new javafx.scene.image.Image(MainApplication.class.getResourceAsStream("/com/example/kyrsach/Content/AvatarFolder_photo-resizer.ru.png")));
                     /* put a string on dragboard */
-                    content.putImage(new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\AvatarFolder_photo-resizer.ru.png"));
+                    content.putImage(new javafx.scene.image.Image(MainApplication.class.getResourceAsStream("/com/example/kyrsach/Content/AvatarFolder_photo-resizer.ru.png")));
                    } else {
-                        db.setDragView(new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
+                        db.setDragView(new javafx.scene.image.Image(MainApplication.class.getResourceAsStream("/com/example/kyrsach/Content/rrt_photo-resizer.ru (1).png")));
                         /* put a string on dragboard */
-                        content.putImage(new javafx.scene.image.Image("D:\\Kyrsach\\src\\main\\resources\\com\\example\\kyrsach\\Content\\rrt_photo-resizer.ru (1).png"));
+                        content.putImage(new javafx.scene.image.Image(MainApplication.class.getResourceAsStream("/com/example/kyrsach/Content/rrt_photo-resizer.ru (1).png")));
                     }
                     db.setContent(content);
                     DragEvent.consume();
