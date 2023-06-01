@@ -5,15 +5,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Fleashka {
-    public static void main(String[] args) {
-        boolean flashDriveInserted = isFlashDriveInserted();
+    public static void main(String[] args) throws IOException {
+            String process;
+            Process p = Runtime.getRuntime().exec("ps -aef | grep \"javaagent\" | grep \"MainApplication\"");
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            process = input.readLine();
+            while ((process = input.readLine()) != null) {
+                byte[] arr = process.getBytes("UTF-8");
+                process = new String (arr, "utf8");
+                System.out.println(process);
+            }
+            input.close();
 
-        if (flashDriveInserted) {
-            System.out.println("Flash drive inserted");
-        } else {
-            System.out.println("Flash drive removed");
         }
-    }
+
 
     private static boolean isFlashDriveInserted() {
         try {

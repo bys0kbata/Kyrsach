@@ -606,15 +606,14 @@ public class MainController {
                 });
                row.setOnDragExited(event -> {
                     row.setStyle("-fx-background-color:  ;");});
-                row.setOnDragDone(DragEvent ->{
-
-                    System.out.println(row.getItem().getNameFile());
+                row.setOnDragDone(event ->{
                 });
                 row.setOnDragDropped(event -> {
-                    System.out.println(row.getItem().getNameFile());
                     event.setDropCompleted(true);
-                    System.out.println(row.getItem().getPuth());
-                    filemetod.pasteFile(copyVal,tableView.getSelectionModel().getSelectedItem().getPuth() + "/" + copyNameVal);
+                    System.out.println(row.getItem().getNameFile());
+                    filemetod.pasteFile(copyVal,row.getItem().getPuth() + "/" + copyNameVal);
+                    System.out.println(row.getItem().getPuth() + "/" + copyNameVal);
+                    System.out.println(copyVal);
                 });
                 return row;
             });
