@@ -315,10 +315,8 @@ public class MainController {
 
     }
     String root = "/home/denis/Документы/GitHub/Kyrsach/Kyrsovay";
-    final RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
         @FXML 
     void initialize() {
-            System.out.println(runtime.getPID());
         pathHistory.add(0, Path.of(root));
             openFileandReadFile2();
             treeFile.setRoot(romans);

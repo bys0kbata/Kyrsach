@@ -6,11 +6,20 @@ import javafx.collections.ObservableList;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.concurrent.Semaphore;
 
-public class taskFour {
+public class taskFour extends Thread {
     public String timedatestart;
     String PID;
+    Semaphore sem;
     ObservableList<String> list = FXCollections.observableArrayList();
+    public taskFour(Semaphore sem,String PID){
+        this.PID = PID;
+        this.sem = sem;
+    }
+    public void getPID(){
+
+    }
 
     public void getStime(){
         try {
@@ -49,6 +58,15 @@ public class taskFour {
     public void getCountThread(){
 
     }
-    
 
+    @Override
+    public void run() {
+        try {
+            sem.acquire();
+
+            sem.release();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
