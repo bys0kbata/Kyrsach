@@ -1,49 +1,33 @@
 package com.example.kyrsach.Metod;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import javax.swing.*;
+import java.io.File;
+import java.util.ArrayList;
 
 public class Fleashka {
-    public static void main(String[] args) throws IOException {
-            String process;
-            Process p = Runtime.getRuntime().exec("ps -aef | grep \"javaagent\" | grep \"MainApplication\"");
-            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            process = input.readLine();
-            while ((process = input.readLine()) != null) {
-                byte[] arr = process.getBytes("UTF-8");
-                process = new String (arr, "utf8");
-                System.out.println(process);
-            }
-            input.close();
+    ArrayList<String> arrayList = new ArrayList<>();
 
-        }
-
-
-    private static boolean isFlashDriveInserted() {
-        try {
-            Process process = Runtime.getRuntime().exec("ls -l /dev/disk/by-id/usb*");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.contains("disk")) {
-                    String[] tokens = line.split("\\s+");
-                    String deviceName = tokens[0];
-
-                    if (deviceName.startsWith("sd") && !deviceName.endsWith("1")) {
-                        return true;
-                    }
+    public String[] searchFiles(String fileName, File directory,ArrayList<String> arr) {
+        String[] udfile = new String[0];
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    searchFiles(fileName, file,arr);
+                } else if (file.getName().equalsIgnoreCase(fileName)) {
+                    System.out.println("File found: " + file.getAbsolutePath());
+                    arr.
                 }
             }
-
-            process.waitFor();
-            reader.close();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
         }
-
-        return false;
+        return udfile;
     }
-}
+
+        public static void main(String[] args) {
+            Fleashka fileSearch = new Fleashka();
+            String fileName = "tet";
+            File directory = new File("D:\\");
+            System.out.println(fileSearch.searchFiles(fileName, directory)[0]);
+        }
+    }
 
