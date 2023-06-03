@@ -123,3 +123,68 @@
 Время действия: Sat Jun 03 15:15:25 SAMT 2023 Само действие: Открыли путь: D:\Kyrsach\Kyrsovay
 Время действия: Sat Jun 03 15:15:29 SAMT 2023 Само действие: Открыли путь: \home\denis\Документы\GitHub\Kyrsach\Kyrsovay
 Время действия: Sat Jun 03 15:15:31 SAMT 2023 Само действие: Открыли путь: D:\Kyrsach\Kyrsovay
+Время действия: Sat Jun 03 23:21:07 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:08 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:09 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:10 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:11 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:12 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:14 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/
+Время действия: Sat Jun 03 23:21:22 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Документы/
+Время действия: Sat Jun 03 23:21:23 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:25 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/
+Время действия: Sat Jun 03 23:21:34 SAMT 2023 Само действие: Вставили файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/System/Документы
+Время действия: Sat Jun 03 23:21:36 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/System/
+Время действия: Sat Jun 03 23:21:39 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/System/System/
+Время действия: Sat Jun 03 23:21:40 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/System/System/System/
+Время действия: Sat Jun 03 23:21:46 SAMT 2023 Само действие: Вставили файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/System/System/System/Документы/Документ Microsoft Word.docx
+Время действия: Sat Jun 03 23:21:49 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/System/System/System/Документы/
+Время действия: Sat Jun 03 23:21:50 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:53 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:54 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:55 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:56 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:56 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:21:56 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:22:08 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System
+Время действия: Sat Jun 03 23:22:14 SAMT 2023 Само действие: Вставили файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Log/Больницы.txt
+Время действия: Sat Jun 03 23:22:16 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Log/
+Время действия: Sat Jun 03 23:22:20 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Log/
+Время действия: Sat Jun 03 23:22:26 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Log/
+Время действия: Sat Jun 03 23:22:28 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Log/
+Время действия: Sat Jun 03 23:22:30 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:22:48 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:22:49 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/
+Время действия: Sat Jun 03 23:23:29 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:24:45 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:24:47 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/
+Время действия: Sat Jun 03 23:24:49 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/mama/
+Время действия: Sat Jun 03 23:24:50 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:24:52 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/
+Время действия: Sat Jun 03 23:24:53 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Log/
+Время действия: Sat Jun 03 23:24:56 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Log/LogFile.txt
+Время действия: Sat Jun 03 23:25:19 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/System/System
+Время действия: Sat Jun 03 23:25:21 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/System/Документы
+Время действия: Sat Jun 03 23:25:47 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:25:49 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Restored objects/
+Время действия: Sat Jun 03 23:25:51 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:25:54 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/
+Время действия: Sat Jun 03 23:25:57 SAMT 2023 Само действие: Вернули файл с корзины с названием: text
+Время действия: Sat Jun 03 23:26:00 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:26:01 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Restored objects/
+Время действия: Sat Jun 03 23:26:03 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:26:05 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/
+Время действия: Sat Jun 03 23:26:08 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Больницы.txt
+Время действия: Sat Jun 03 23:26:17 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Документ Microsoft Word.docx
+Время действия: Sat Jun 03 23:26:18 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Больницы.txt
+Время действия: Sat Jun 03 23:26:20 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Документ Microsoft Word.docx
+Время действия: Sat Jun 03 23:26:24 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Документ Microsoft Word.docx
+Время действия: Sat Jun 03 23:26:28 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Документ Microsoft Word.docx
+Время действия: Sat Jun 03 23:26:35 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Документ Microsoft Word.docx
+Время действия: Sat Jun 03 23:26:35 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Документ Microsoft Word.docx
+Время действия: Sat Jun 03 23:26:36 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Курсовая по ОСИО Правдин.docx
+Время действия: Sat Jun 03 23:26:41 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/Курсовая по ОСИО Правдин.docx
+Время действия: Sat Jun 03 23:29:11 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:29:16 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:29:19 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 03 23:29:39 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
