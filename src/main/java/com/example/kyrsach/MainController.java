@@ -575,7 +575,7 @@ public class MainController {
                 buttonFind.setOnAction(
                         Event -> {
                             System.out.println(fieldURL1.getText());
-                            FindThread.searchFiles("test.txt", new File("D:\\скрипты\\"));
+                            FindThread.searchFiles("test.txt", new File(root));
                             FindThread.findfile();
                             URLFindList = FindThread.getArrayList();
                             System.out.println("Массив");
@@ -587,12 +587,15 @@ public class MainController {
                 );
                 fieldURL1.setOnKeyPressed(Event ->{
                     if (Event.getCode().equals(KeyCode.ENTER)) {//Условие, что нажалась кнопка Enter
-                        File filesearch = new File(filemetod.findFile(new File("//Kyrsovay//"), fieldURL1.getText()).toString());
-                        String puthFind = filesearch.getPath();
-                        System.out.println(puthFind.substring(0,puthFind.lastIndexOf("\\")+1));
-                        fieldURL.setText(puthFind.substring(0,puthFind.lastIndexOf("\\")+1));
-                        dirname2.clear();
-                        openFileandReadFile();
+                        System.out.println(fieldURL1.getText());
+                        FindThread.searchFiles("test.txt", new File(root));
+                        FindThread.findfile();
+                        URLFindList = FindThread.getArrayList();
+                        System.out.println("Массив");
+                        for (String i : URLFindList){
+                            System.out.println(i);
+                        }
+                        OpenFindFile(URLFindList);
                     }});
                 buttonFind.setOnMouseExited(
                         mouseEvent -> {
