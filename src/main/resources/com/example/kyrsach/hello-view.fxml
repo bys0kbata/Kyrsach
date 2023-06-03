@@ -32,6 +32,7 @@
                 <TableColumn fx:id="twoColumnTableView" prefWidth="150.0" text="Размер" />
                   <TableColumn fx:id="freeColumnTableView" prefWidth="150.0" text="Последнее изменение" />
                   <TableColumn fx:id="foureColumnTableView" prefWidth="100.0" text="Тип" />
+                  <TableColumn fx:id="sixColumnTableView" prefWidth="180.0" text="Путь" />
               </columns>
             </TableView>
          </children>

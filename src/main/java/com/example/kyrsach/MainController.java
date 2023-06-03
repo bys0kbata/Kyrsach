@@ -87,6 +87,8 @@ public class MainController {
     private TableColumn<nameTable, Date> freeColumnTableView;
     @FXML
     private TableColumn<nameTable, String> foureColumnTableView;
+    @FXML
+    private TableColumn<nameTable, String> sixColumnTableView;
     /**
      * Переменные для функций и сами необходимые функций.
      */
@@ -120,7 +122,7 @@ public class MainController {
 
     ObservableList<nameTable> dirname2 = FXCollections.observableArrayList();
     alertMembers alert = new alertMembers();
-    FindFileThread FindThread;
+    FindFile FindThread = new FindFile();
 
     private void initData(String nameFile, String sizeFile, Date lastOperationFile, String typeFile, String puth) {
         dirname2.add(new nameTable(nameFile, sizeFile, lastOperationFile, typeFile, puth));
@@ -163,7 +165,7 @@ public class MainController {
             twoColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, String>("sizeFile"));
             freeColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, Date>("lastOperationFile"));
             foureColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, String>("typeFile"));
-            tableView.setItems(dirname2);
+            sixColumnTableView.setVisible(false);
             fieldURL.setText(dir);
             histiryURL.add(fieldURL.getText());
         } catch (Exception e) {
@@ -205,6 +207,7 @@ public class MainController {
             twoColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, String>("sizeFile"));
             freeColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, Date>("lastOperationFile"));
             foureColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, String>("typeFile"));
+            sixColumnTableView.setVisible(false);
             tableView.setItems(dirname2);
             fieldURL.setText(dir);
             histiryURL.add(fieldURL.getText());
@@ -214,6 +217,40 @@ public class MainController {
         } else {
             alert.membersError("Неккоректный путь.");
         }
+    }
+    public void OpenFindFile(ArrayList<String> arrayLURL)
+    {
+        dirname2.clear();
+        Date date;
+        String type;
+        String size12;
+        for (String file : arrayLURL) {
+            type = file.substring(file.lastIndexOf(".") + 1, file.length());
+            if (file.lastIndexOf(".") == -1) {
+                type = "No type";
+            }
+            if (new File (file).isDirectory() == true) {
+                type = "Folder";
+            }
+            date = new Date(new File(file).lastModified());
+            if (file.length() / 1024 / 1024 / 1024 > 1) {
+                size12 = file.length() / 1024 / 1024 / 1024 + " ГБ";
+            } else if (file.length() / 1024 / 1024 > 1024) {
+                size12 = file.length() / 1024 / 1024 + "  МБ";
+            } else {
+                size12 = file.length() / 1024 + " КБ";
+            }
+            initData(file.substring(file.lastIndexOf("\\") + 1), size12, date, type, new File (file).getPath());
+
+        }
+        oneColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, String>("nameFile"));
+        twoColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, String>("sizeFile"));
+        freeColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, Date>("lastOperationFile"));
+        foureColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, String>("typeFile"));
+        sixColumnTableView.setVisible(true);
+        sixColumnTableView.setCellValueFactory(new PropertyValueFactory<nameTable, String>("puth"));
+        tableView.setItems(dirname2);
+        URLFindList.clear();
     }
     String timeURLI;
     public void OpenURLTreeView(String URLI) throws IOException {
@@ -315,6 +352,7 @@ public class MainController {
 
     }
     String root = "/home/denis/Документы/GitHub/Kyrsach/Kyrsovay";
+    ArrayList<String> URLFindList;
         @FXML 
     void initialize() {
         pathHistory.add(0, Path.of(root));
@@ -535,16 +573,16 @@ public class MainController {
                         }
                 );
                 buttonFind.setOnAction(
-                        mouseEvent -> {
+                        Event -> {
                             System.out.println(fieldURL1.getText());
-                            FindThread = new FindFileThread(fieldURL1.getText());
-                            FindThread.run();
-                            //File filesearch = new File(filemetod.findFile(new File("//Kyrsovay//"), fieldURL1.getText()).toString());
-                            String puthFind = FindThread.getFiles().getPath();
-                            System.out.println(puthFind.substring(0,puthFind.lastIndexOf("\\")+1));
-                            fieldURL.setText(puthFind.substring(0,puthFind.lastIndexOf("\\")+1));
-                            dirname2.clear();
-                            openFileandReadFile();
+                            FindThread.searchFiles("test.txt", new File("D:\\скрипты\\"));
+                            FindThread.findfile();
+                            URLFindList = FindThread.getArrayList();
+                            System.out.println("Массив");
+                            for (String i : URLFindList){
+                                System.out.println(i);
+                            }
+                            OpenFindFile(URLFindList);
                         }
                 );
                 fieldURL1.setOnKeyPressed(Event ->{

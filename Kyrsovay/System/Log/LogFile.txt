@@ -120,3 +120,6 @@
 Время действия: Thu Jun 01 23:05:03 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/text/text/text/text/text/
 Время действия: Thu Jun 01 23:05:04 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/text/text/text/text/text/mamni/
 Время действия: Thu Jun 01 23:05:05 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/text/text/text/text/text/mamni/jago/
+Время действия: Sat Jun 03 15:15:25 SAMT 2023 Само действие: Открыли путь: D:\Kyrsach\Kyrsovay
+Время действия: Sat Jun 03 15:15:29 SAMT 2023 Само действие: Открыли путь: \home\denis\Документы\GitHub\Kyrsach\Kyrsovay
+Время действия: Sat Jun 03 15:15:31 SAMT 2023 Само действие: Открыли путь: D:\Kyrsach\Kyrsovay
