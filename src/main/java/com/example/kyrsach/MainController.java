@@ -1,12 +1,15 @@
 package com.example.kyrsach;
 
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 import com.example.kyrsach.Controller.renameFileController;
 import com.example.kyrsach.Metod.*;
 import com.example.kyrsach.ThreadCont.FindFileThread;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -351,14 +355,63 @@ public class MainController {
         }
 
     }
+    public void updateTreeView() {
+        TreeItem<File> rootItem = new TreeItem<>(new File("./"));
+        treeFile.setRoot(rootItem);
+        treeFile.setShowRoot(false);
+        creetree(rootItem, filePath);
+// Загружаем дочерние элементы папки
+        creetree(rootItem, new File(root));
+    }
+
+    public void monitorUSB() {
+        java.util.List<File> usbList = new ArrayList<>();
+        java.util.List<File> usbListNew = new ArrayList<>();
+        try {
+            Thread.sleep(2000);
+            usbList = java.util.List.of(filePath.listFiles());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        while (true) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            usbListNew = List.of(filePath.listFiles());
+            if (usbListNew.size() != usbList.size()) {
+                usbList = usbListNew;
+                Platform.runLater(()->{
+                    updateTreeView();
+                });
+
+            }
+        }
+    }
     String root = "/home/denis/Документы/GitHub/Kyrsach/Kyrsovay";
     ArrayList<String> URLFindList;
+    public String userName;
+    public File filePath;
         @FXML 
     void initialize() {
         pathHistory.add(0, Path.of(root));
             openFileandReadFile2();
             treeFile.setRoot(romans);
             creetree(treeFile.getRoot(),new File(root));
+            Process command = null;
+            try {
+                command = Runtime.getRuntime().exec("users");
+                BufferedReader input = new BufferedReader(new InputStreamReader(command.getInputStream()));
+                userName = input.readLine();
+                filePath = new File("/run/media/" + userName);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            updateTreeView();
+            Thread flashDriveThread = new Thread(this::monitorUSB);
+            flashDriveThread.setDaemon(true);
+            flashDriveThread.start();
             /**
              * Контекстное меню для tableView
              *  */
