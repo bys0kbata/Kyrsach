@@ -398,11 +398,8 @@ public class MainController {
     ArrayList<String> URLFindList;
     public String userName;
     public File filePath;
-<<<<<<< Updated upstream
     taskFour task = new taskFour();
-=======
 
->>>>>>> Stashed changes
         @FXML 
     void initialize() throws IOException {
 
@@ -669,11 +666,7 @@ public class MainController {
                 }
             });
             WinTest.setOnAction(event -> {
-<<<<<<< Updated upstream
-                System.out.println(MainApplication.getTimeStart());;
-=======
-                System.out.println(MainApplication.getSizeW()+ " "+ MainApplication.getSizeH());
->>>>>>> Stashed changes
+
             });
             /***
              * Реализация DragandDrop
