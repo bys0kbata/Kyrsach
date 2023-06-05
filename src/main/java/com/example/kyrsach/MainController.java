@@ -666,7 +666,9 @@ public class MainController {
                 }
             });
             WinTest.setOnAction(event -> {
-
+                System.out.println(task.getStime());
+                System.out.println(task.getSizeWinApp());
+                task.getCountThread();
             });
             /***
              * Реализация DragandDrop

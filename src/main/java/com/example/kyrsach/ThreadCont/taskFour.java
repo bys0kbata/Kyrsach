@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.util.Objects;
 import java.util.concurrent.Semaphore;
 
 public class taskFour extends Thread {
@@ -13,35 +14,23 @@ public class taskFour extends Thread {
     Semaphore sem;
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    ProcessBuilder proc = new ProcessBuilder();
 
     String valSizeWH;
+    String valstime;
 
 
-    public void getStime() {
+    public String getStime() {
+        valstime = "Время старта процесса: "+ MainApplication.getTimeStart();
+        return valstime;
         }
 
 
 
     public String getSizeWinApp(){
-        return valSizeWH = MainApplication.getSizeW()+" "+MainApplication.getSizeH();
+        return valSizeWH = "Размер окна приложения: "+MainApplication.getSizeW()+" "+MainApplication.getSizeH();
     }
-    public void getCountThread(){
-        try {
-            String process;
-            Process p =  Runtime.getRuntime().exec("ps hH p"+ PID +" | wc -l\n");
-            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            process = input.readLine();
-            while ((process = input.readLine()) != null) {
-                byte[] arr = process.getBytes("UTF-8");
-                process = new String (arr, "utf8");
-                list.add(process);// Выписывает результат по строчно
-                System.out.println(process);
-            }
-            input.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public int getCountThread(){
+        return Thread.getAllStackTraces().keySet().size();
     }
 
     @Override
