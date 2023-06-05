@@ -13,26 +13,18 @@ public class taskFour extends Thread {
     String PID;
     Semaphore sem;
     ObservableList<String> list = FXCollections.observableArrayList();
-
-
     String valSizeWH;
     String valstime;
-
-
     public String getStime() {
         valstime = "Время старта процесса: "+ MainApplication.getTimeStart();
         return valstime;
         }
-
-
-
     public String getSizeWinApp(){
         return valSizeWH = "Размер окна приложения: "+MainApplication.getSizeW()+" "+MainApplication.getSizeH();
     }
-    public int getCountThread(){
-        return Thread.getAllStackTraces().keySet().size();
+    public String getCountThread(){
+        return "Количество потоков в ПО: "+ Thread.getAllStackTraces().keySet().size();
     }
-
     @Override
     public void run() {
         try {
