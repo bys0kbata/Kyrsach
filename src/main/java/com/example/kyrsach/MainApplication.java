@@ -19,9 +19,14 @@ import java.time.format.DateTimeFormatterBuilder;
 
 public class MainApplication extends Application {
     openWindows open = new openWindows();
+<<<<<<< Updated upstream
     LocalDateTime time;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
     static String formattedTime;
+=======
+    public static double sizeH;
+    public static double sizeW;
+>>>>>>> Stashed changes
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -32,9 +37,15 @@ public class MainApplication extends Application {
         stage.getIcons().add(new Image( MainApplication.class.getResourceAsStream("/com/example/kyrsach/Content/AvatarApp.png")));
         stage.setScene(scene);
         stage.show();
+<<<<<<< Updated upstream
         time = LocalDateTime.now();
         formattedTime = time.format(formatter);
         System.out.println("Текущее время: " + formattedTime);
+=======
+        sizeH = stage.getHeight();
+        sizeW = stage.getWidth();
+
+>>>>>>> Stashed changes
         //Реализация горячих кнопок
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -86,7 +97,17 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
+<<<<<<< Updated upstream
     public static String getTimeStart() {
         return formattedTime;
     }
     }
+=======
+    public static double getSizeH(){
+        return sizeH;
+    }
+    public static double getSizeW(){
+        return sizeW;
+    };
+}
+>>>>>>> Stashed changes

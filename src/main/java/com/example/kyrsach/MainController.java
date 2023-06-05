@@ -23,13 +23,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.*;
-
+import javafx.stage.Stage;
 
 
 public class MainController {
@@ -98,6 +101,7 @@ public class MainController {
      * Переменные для функций и сами необходимые функций.
      */
     LogFile log = new LogFile();
+    Stage stage = new Stage();
     openWindows open = new openWindows();
     File MainFolder = new File("Kyrsovay//");
     public String dir = MainFolder.getAbsolutePath();
@@ -394,23 +398,29 @@ public class MainController {
     ArrayList<String> URLFindList;
     public String userName;
     public File filePath;
+<<<<<<< Updated upstream
     taskFour task = new taskFour();
+=======
+
+>>>>>>> Stashed changes
         @FXML 
-    void initialize() {
+    void initialize() throws IOException {
+
+
         pathHistory.add(0, Path.of(root));
             openFileandReadFile2();
             treeFile.setRoot(romans);
             creetree(treeFile.getRoot(),new File(root));
             Process command = null;
-            try {
+           /* try {
                 command = Runtime.getRuntime().exec("users");
                 BufferedReader input = new BufferedReader(new InputStreamReader(command.getInputStream()));
                 userName = input.readLine();
                 filePath = new File("/run/media/" + userName);
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }
-            updateTreeView();
+            }*/
+            //updateTreeView();
             Thread flashDriveThread = new Thread(this::monitorUSB);
             flashDriveThread.setDaemon(true);
             flashDriveThread.start();
@@ -648,10 +658,10 @@ public class MainController {
                         }
                 );
             }
-            FSLocal.setOnAction(event -> {
+            TerminalLocal.setOnAction(event -> {
                 filemetod.MessengerStandart();
             });
-            TerminalLocal.setOnAction(event -> {
+            FSLocal.setOnAction(event -> {
                 try {
                     filemetod.TerminalOpen();
                 } catch (IOException e) {
@@ -659,7 +669,11 @@ public class MainController {
                 }
             });
             WinTest.setOnAction(event -> {
+<<<<<<< Updated upstream
                 System.out.println(MainApplication.getTimeStart());;
+=======
+                System.out.println(MainApplication.getSizeW()+ " "+ MainApplication.getSizeH());
+>>>>>>> Stashed changes
             });
             /***
              * Реализация DragandDrop
