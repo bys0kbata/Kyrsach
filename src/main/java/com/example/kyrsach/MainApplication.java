@@ -12,12 +12,19 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 
 
 public class MainApplication extends Application {
     openWindows open = new openWindows();
+    LocalDateTime time;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    static String formattedTime;
     @Override
     public void start(Stage stage) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1078, 509);
         stage.setTitle("Superapp");
@@ -25,6 +32,9 @@ public class MainApplication extends Application {
         stage.getIcons().add(new Image( MainApplication.class.getResourceAsStream("/com/example/kyrsach/Content/AvatarApp.png")));
         stage.setScene(scene);
         stage.show();
+        time = LocalDateTime.now();
+        formattedTime = time.format(formatter);
+        System.out.println("Текущее время: " + formattedTime);
         //Реализация горячих кнопок
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -76,4 +86,7 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
-}
+    public static String getTimeStart() {
+        return formattedTime;
+    }
+    }

@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import com.example.kyrsach.Controller.renameFileController;
 import com.example.kyrsach.Metod.*;
 import com.example.kyrsach.ThreadCont.FindFileThread;
+import com.example.kyrsach.ThreadCont.taskFour;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -356,7 +357,7 @@ public class MainController {
 
     }
     public void updateTreeView() {
-        TreeItem<File> rootItem = new TreeItem<>(new File("./"));
+        TreeItem<File> rootItem = new TreeItem<>(new File(root));
         treeFile.setRoot(rootItem);
         treeFile.setShowRoot(false);
         creetree(rootItem, filePath);
@@ -393,6 +394,7 @@ public class MainController {
     ArrayList<String> URLFindList;
     public String userName;
     public File filePath;
+    taskFour task = new taskFour();
         @FXML 
     void initialize() {
         pathHistory.add(0, Path.of(root));
@@ -657,7 +659,7 @@ public class MainController {
                 }
             });
             WinTest.setOnAction(event -> {
-
+                System.out.println(MainApplication.getTimeStart());;
             });
             /***
              * Реализация DragandDrop

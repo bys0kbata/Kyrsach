@@ -188,3 +188,16 @@
 Время действия: Sat Jun 03 23:29:16 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
 Время действия: Sat Jun 03 23:29:19 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
 Время действия: Sat Jun 03 23:29:39 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Mon Jun 05 22:04:47 SAMT 2023 Само действие: Открыли окно Терминал
+Время действия: Mon Jun 05 22:29:18 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Mon Jun 05 22:29:20 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/
+Время действия: Mon Jun 05 22:29:23 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/
+Время действия: Mon Jun 05 22:29:25 SAMT 2023 Само действие: Вставили файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/mamni/tet.txt
+Время действия: Mon Jun 05 22:29:26 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/mamni/
+Время действия: Mon Jun 05 22:29:29 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Mon Jun 05 22:29:30 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/
+Время действия: Mon Jun 05 22:29:31 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/
+Время действия: Mon Jun 05 22:29:34 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/mamni/
+Время действия: Mon Jun 05 22:29:36 SAMT 2023 Само действие: Вставили файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/mamni/jago/tet.txt
+Время действия: Mon Jun 05 22:29:37 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/mamni/jago/
+Время действия: Mon Jun 05 22:29:38 SAMT 2023 Само действие: Открыли файл с путем: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/text/mamni/jago/tet.txt
