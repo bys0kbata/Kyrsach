@@ -12,11 +12,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.concurrent.Semaphore;
 import java.util.stream.Collectors;
 
 import com.example.kyrsach.Controller.renameFileController;
 import com.example.kyrsach.Metod.*;
 import com.example.kyrsach.ThreadCont.FindFileThread;
+import com.example.kyrsach.ThreadCont.SemaphoreOS;
 import com.example.kyrsach.ThreadCont.taskFour;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -123,6 +125,7 @@ public class MainController {
       MenuItem menuСopy = new MenuItem("Копировать");
       MenuItem menuPaste = new MenuItem("Вставить");
       MenuItem menuDeleteBasket = new MenuItem("Удалить в Корзину");
+      SemaphoreOS semOS = new SemaphoreOS();
     @FXML
     private MenuItem FSLocal;
 
@@ -227,6 +230,7 @@ public class MainController {
             alert.membersError("Неккоректный путь.");
         }
     }
+    Semaphore sem = new Semaphore(1);
     public void OpenFindFile(ArrayList<String> arrayLURL)
     {
         dirname2.clear();
@@ -398,7 +402,6 @@ public class MainController {
     ArrayList<String> URLFindList;
     public String userName;
     public File filePath;
-    taskFour task = new taskFour();
 
         @FXML 
     void initialize() throws IOException {
@@ -666,9 +669,11 @@ public class MainController {
                 }
             });
             WinTest.setOnAction(event -> {
-                System.out.println(task.getStime());
-                System.out.println(task.getSizeWinApp());
-                task.getCountThread();
+                try {
+                    semOS.getSemaphoreO();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
             /***
              * Реализация DragandDrop
