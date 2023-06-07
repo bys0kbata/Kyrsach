@@ -405,8 +405,6 @@ public class MainController {
 
         @FXML 
     void initialize() throws IOException {
-
-
         pathHistory.add(0, Path.of(root));
             openFileandReadFile2();
             treeFile.setRoot(romans);
