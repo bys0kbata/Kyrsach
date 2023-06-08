@@ -402,6 +402,16 @@ public class MainController {
     ArrayList<String> URLFindList;
     public String userName;
     public File filePath;
+    @FXML
+    private MenuItem Connection;
+
+    @FXML
+    private MenuItem ControlSeti;
+    @FXML
+    private MenuItem Login;
+
+    @FXML
+    private MenuItem SysMon;
 
         @FXML 
     void initialize() throws IOException {
@@ -427,6 +437,18 @@ public class MainController {
             /**
              * Контекстное меню для tableView
              *  */
+            Login.setOnAction(actionEvent -> {
+                filemetod.GnomeLogs();
+            });
+            Connection.setOnAction(actionEvent -> {
+                filemetod.NetworkManager();
+            });
+            ControlSeti.setOnAction(actionEvent -> {
+                filemetod.GnomeControl();
+            });
+            SysMon.setOnAction(actionEvent ->{
+                filemetod.GnomeSystemMonitor();
+            });
             contextMenu.getItems().addAll(menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile, menuRestored);
             contextMenu.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #464451;");
             //Контекстное меню

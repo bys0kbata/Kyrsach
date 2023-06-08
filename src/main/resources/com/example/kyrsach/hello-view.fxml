@@ -73,6 +73,10 @@
                      <items>
                         <MenuItem fx:id="FSLocal" mnemonicParsing="false" text="Локальный терминал" />
                         <MenuItem fx:id="TerminalLocal" mnemonicParsing="false" text="Локальный Менеджер" />
+                        <MenuItem fx:id="ControlSeti" mnemonicParsing="false" text="Локальный сети" />
+                        <MenuItem fx:id="SysMon" mnemonicParsing="false" text="Системный мониторинг" />
+                        <MenuItem fx:id="Login" mnemonicParsing="false" text="Логирование" />
+                        <MenuItem fx:id="Connection" mnemonicParsing="false" text="Сетевые соединения" />
                      </items>
                      <graphic>
                         <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 5; -fx-border-radius: 5;" text="App" />
