@@ -410,14 +410,16 @@ public class MainController {
             treeFile.setRoot(romans);
             creetree(treeFile.getRoot(),new File(root));
             Process command = null;
-           /* try {
+           try {
                 command = Runtime.getRuntime().exec("users");
                 BufferedReader input = new BufferedReader(new InputStreamReader(command.getInputStream()));
                 userName = input.readLine();
                 filePath = new File("/run/media/" + userName);
+               System.out.println("Нашла");
+               creetree(treeFile.getRoot(), filePath);
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }*/
+            }
             //updateTreeView();
             Thread flashDriveThread = new Thread(this::monitorUSB);
             flashDriveThread.setDaemon(true);

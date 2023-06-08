@@ -114,22 +114,6 @@ public class metodFile {
             Process rename = Runtime.getRuntime().exec("mkdir " + PuthVal.getPath()+"/" + text.getEditor().getText());
         }
     }
-  /*  public List<nameTable> searchFiles(Path directory, String query) {
-            List<nameTable> searchResults = new ArrayList<>();
-            List<Path> testpath = new ArrayList<>();
-
-            try {
-                Files.walk(directory)
-                        .filter(path -> path.getFileName().toString().contains(query))
-                        .forEach(path -> searchResults.add());
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Обработка ошибки при доступе к файлам
-            }
-
-            return searchResults;
-        }
-    }*/
     public void pasteFile(String copyFile, String valURL2)
     {
         log.writeFile("Вставили файл с путем: "+ valURL2 );
@@ -200,5 +184,40 @@ public class metodFile {
     public void TerminalOpen() throws IOException {
         log.writeFile("Открыли локальный терминал");
         Process p = Runtime.getRuntime().exec("gnome-terminal");
+    }
+    public void GnomeControl() {
+        try {
+            log.writeFile("Открыли локальный контроллер ресурсов");
+            Runtime.getRuntime().exec("gnome-control-center");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void GnomeSystemMonitor() {
+        try {
+            log.writeFile("Открыли локальный системный мониторинг");
+            Runtime.getRuntime().exec("gnome-system-monitor");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void GnomeLogs() {
+        try {
+            log.writeFile("Открыли локальный систему логов");
+            Runtime.getRuntime().exec("gnome-logs");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void NetworkManager() {
+        try {
+            log.writeFile("Открыли локальный интернет менеджер");
+            Runtime.getRuntime().exec("nm-connection-editor");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

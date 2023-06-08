@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="425.0" prefWidth="420.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kyrsach.Controller.AboutController">
+<AnchorPane prefHeight="425.0" prefWidth="420.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kyrsach.Controller.AboutController">
     <children>
         <AnchorPane layoutX="15.0" layoutY="17.0" prefHeight="398.0" prefWidth="393.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;">
          <children>
-            <TextArea layoutX="16.0" layoutY="6.0" prefHeight="378.0" prefWidth="360.0" text="Перечислить все порты: netstat -a&#10;Показать статистику только UDP портов: netstat -su&#10;Показать статистику только TCP портов: netstat -st&#10;Показать статистику всех портов: netstat -s&#10;Перечислить все UDP порты: netstat -au&#10;Перечислить все TCP порты: netstat -at&#10;Показать таблицу маршрутизации ядра: netstat -r&#10;Показать список сетевых интерфейсов: netstat -i&#10;Вывод список сетевых интерфейсов: nmcli&#10;Показывает все текущие машруты, &#10;настроенные для соответствующих интерфейсов: arp&#10;ping [IP server] -C 5 - проверка подключения к серверу&#10;сat [Full Path] - выводит содержимое файла&#10;mkdir [Full Path] - создать папку по полному пути&#10;touch [Full Path] - создать файл по полному пути&#10;&#10;" />
+            <TextArea layoutX="16.0" layoutY="6.0" prefHeight="378.0" prefWidth="360.0" text="Показать статистику только UDP портов: netstat -su&#10;Показать статистику только TCP портов: netstat -st&#10;Показать статистику всех портов: netstat -s&#10;Перечислить все UDP порты: netstat -au&#10;Показать таблицу маршрутизации ядра: netstat -r&#10;Показать список сетевых интерфейсов: netstat -i&#10;Вывод список сетевых интерфейсов: nmcli&#10;Показывает все текущие машруты, &#10;настроенные для соответствующих интерфейсов: arp&#10;ping [IP server] -C 5 - проверка подключения к серверу&#10;сat [Full Path] - выводит содержимое файла&#10;mkdir [Full Path] - создать папку по полному пути&#10;touch [Full Path] - создать файл по полному пути&#10;&#10;" />
          </children>
         </AnchorPane>
     </children>
