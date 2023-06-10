@@ -21,4 +21,16 @@ public class LogFile {
             e.printStackTrace();
         }
     }
+    public void write(String valLog){
+        String text = valLog;
+
+        // `true` добавит новые данные
+        try(FileWriter fw = new FileWriter(new File("Kyrsovay/System/Log/TaskWin.txt"), true))
+        {
+            fw.write(text);
+            System.out.println("Successfully written data to the file");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
