@@ -34,6 +34,27 @@ public class taskFour extends Thread {
     public String getCountThread(){
         return "Количество потоков в ПО: "+ Thread.getAllStackTraces().keySet().size();
     }
+    public void Write(){ try(
+            FileWriter fw = new FileWriter(new File("Kyrsovay/System/Log/Text4.txt"), true))
+    {
+        fw.write(getSizeWinApp()+ " "+ getCountThread()+ " "+ getCountThread()+" ");
+        System.out.println("Successfully written data to the file");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }}
+    public void Read(){ try(FileReader reader = new FileReader("Kyrsovay/System/Log/Text4.txt"))
+    {
+        // читаем посимвольно
+        int c;
+        while((c=reader.read())!=-1){
+
+            System.out.print((char)c);
+        }
+    }
+        catch(IOException ex){
+
+        System.out.println(ex.getMessage());
+    }}
     @Override
     public void run() {
         try {

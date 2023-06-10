@@ -693,6 +693,7 @@ public class MainController {
             WinTest.setOnAction(event -> {
                 try {
                     semOS.getSemaphoreO();
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

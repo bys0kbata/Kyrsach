@@ -1,12 +1,14 @@
 package com.example.kyrsach.Controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.ResourceBundle;
 
+import com.example.kyrsach.Metod.metodFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableArrayBase;
@@ -29,6 +31,24 @@ public class TaskController {
     @FXML
     private ListView<String> listTask;
     ObservableList<String> list = FXCollections.observableArrayList();
+    metodFile met = new metodFile();
+    String r;
+    public void Read(){ try(FileReader reader = new FileReader("Kyrsovay/System/Log/task.txt"))
+    {
+        // читаем посимвольно
+        int c;
+        while((c=reader.read())!=-1){
+            // Выписывает результат по строчно
+            r +=(char)c;
+            System.out.print((char)c);
+        }
+        list.add(r);
+        Files.writeString(Path.of(new File("Kyrsovay/System/Log/task.txt").getAbsolutePath()), (CharSequence) "");
+    }
+    catch(IOException ex){
+
+        System.out.println(ex.getMessage());
+    }}
     public void ProcessList(){
         try {
             list.clear();
@@ -40,6 +60,7 @@ public class TaskController {
                 list.add(process);// Выписывает результат по строчно
             }
             input.close();
+            Read();
             listTask.setItems( list);
         } catch (Exception err) {
             err.printStackTrace();

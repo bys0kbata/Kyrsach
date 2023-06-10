@@ -6,7 +6,9 @@ import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -14,6 +16,7 @@ public class metodFile {
     TextInputDialog text = new TextInputDialog();
     LogFile log = new LogFile();
     File root= new File("/home/denis/Документы/GitHub/Kyrsach/Kyrsovay");
+    public ArrayList<Long> listPID = new ArrayList<>();
     private Boolean protect(File file){
         System.out.println(root.getAbsolutePath());
         if (!Objects.isNull(file) && (file.toString().startsWith(new File(root+"/System").toString())
@@ -184,11 +187,14 @@ public class metodFile {
     public void TerminalOpen() throws IOException {
         log.writeFile("Открыли локальный терминал");
         Process p = Runtime.getRuntime().exec("gnome-terminal");
+        Write(p.pid(),"Терминал");
+        System.out.println(p.pid());
     }
     public void GnomeControl() {
         try {
-            log.writeFile("Открыли локальный контроллер ресурсов");
-            Runtime.getRuntime().exec("gnome-control-center");
+            log.writeFile("Открыли локальный контроллер сети");
+            Process p =Runtime.getRuntime().exec("gnome-control-center");
+            Write(p.pid(),"Контроллер сети");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -197,7 +203,8 @@ public class metodFile {
     public void GnomeSystemMonitor() {
         try {
             log.writeFile("Открыли локальный системный мониторинг");
-            Runtime.getRuntime().exec("gnome-system-monitor");
+            Process p =Runtime.getRuntime().exec("gnome-system-monitor");
+            Write(p.pid(),"Cистема мониторинга");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -206,7 +213,8 @@ public class metodFile {
     public void GnomeLogs() {
         try {
             log.writeFile("Открыли локальный систему логов");
-            Runtime.getRuntime().exec("gnome-logs");
+            Process p =Runtime.getRuntime().exec("gnome-logs");
+            Write(p.pid(),"Cистема логов");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -215,9 +223,18 @@ public class metodFile {
     public void NetworkManager() {
         try {
             log.writeFile("Открыли локальный интернет менеджер");
-            Runtime.getRuntime().exec("nm-connection-editor");
+            Process p =Runtime.getRuntime().exec("nm-connection-editor");
+            Write(p.pid(),"интернет менеджер");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    public void Write(Long Pid, String name){ try(
+            FileWriter fw = new FileWriter(new File("Kyrsovay/System/Log/task.txt"), true))
+    {
+        fw.write(Pid+" "+ name+"\n");
+        System.out.println("Successfully written data to the file");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }}
 }
