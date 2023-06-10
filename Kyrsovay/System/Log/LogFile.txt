@@ -329,3 +329,25 @@
 Время действия: Sat Jun 10 20:18:57 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/Trash/
 Время действия: Sat Jun 10 20:19:33 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/
 Время действия: Sat Jun 10 20:19:35 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay/System/
+Время действия: Sat Jun 10 20:30:09 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/
+Время действия: Sat Jun 10 20:30:11 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/
+Время действия: Sat Jun 10 20:30:13 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 10 20:30:19 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/
+Время действия: Sat Jun 10 20:30:23 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы
+Время действия: Sat Jun 10 20:36:46 SAMT 2023 Само действие: Открыли путь: /run/media/denis
+Время действия: Sat Jun 10 20:36:56 SAMT 2023 Само действие: Открыли путь: /run/media/denis/USB DISK
+Время действия: Sat Jun 10 20:37:04 SAMT 2023 Само действие: Открыли путь: /run/media/denis/USB DISK/песочный замок/Фото
+Время действия: Sat Jun 10 20:37:36 SAMT 2023 Само действие: Открыли путь: /run/media/denis/USB DISK/[Denis Astahov] Terraform с Нуля до Сертифицированного Профессионала (2020)/4. Дополнительные Возможности Terraform
+Время действия: Sat Jun 10 20:37:44 SAMT 2023 Само действие: Открыли путь: /run/media/denis/USB DISK/.Trash-1000/expunged
+Время действия: Sat Jun 10 20:38:24 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 10 20:39:23 SAMT 2023 Само действие: Открыли путь: /run/media/denis
+Время действия: Sat Jun 10 20:39:27 SAMT 2023 Само действие: Открыли путь: /run/media/denis/USB DISK
+Время действия: Sat Jun 10 20:39:33 SAMT 2023 Само действие: Открыли путь: /run/media/
+Время действия: Sat Jun 10 20:39:37 SAMT 2023 Само действие: Открыли путь: /run/
+Время действия: Sat Jun 10 20:39:42 SAMT 2023 Само действие: Открыли путь: /home/denis/Документы/GitHub/Kyrsach/Kyrsovay
+Время действия: Sat Jun 10 20:39:44 SAMT 2023 Само действие: Открыли путь: /run/media/denis
+Время действия: Sat Jun 10 20:39:44 SAMT 2023 Само действие: Открыли путь: /run/media/denis/USB DISK
+Время действия: Sat Jun 10 20:39:47 SAMT 2023 Само действие: Открыли путь: /run/media/denis/USB DISK/System Volume Information/
+Время действия: Sat Jun 10 20:39:49 SAMT 2023 Само действие: Открыли путь: /run/media/denis
+Время действия: Sat Jun 10 20:39:51 SAMT 2023 Само действие: Открыли путь: /run/media/denis/USB DISK/
+Время действия: Sat Jun 10 20:40:25 SAMT 2023 Само действие: Вставили файл с путем: /run/media/denis/USB DISK/песочный замок/песочный замок

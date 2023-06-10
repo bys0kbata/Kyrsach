@@ -194,7 +194,7 @@ public class MainController {
         String dirname = null;
         String type;
         String size12;
-        if (!Objects.isNull(dir) && (dir.toString().startsWith(new File(root).toString()))){
+        if (!Objects.isNull(dir) && (dir.toString().startsWith(new File(root).toString()) || (dir.toString().startsWith("/run/media/")))){
         File[] files = new File(dir).listFiles();
         try {
             for (File file : files) {
