@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import java.util.Optional;
 
 public class alertMembers {
-    Alert alert = new Alert(Alert.AlertType.ERROR);
+    public Alert alert = new Alert(Alert.AlertType.ERROR);
     public void membersError(String titlename) {
         alert.setTitle("ERROR Dialog");
         alert.setHeaderText(titlename);
