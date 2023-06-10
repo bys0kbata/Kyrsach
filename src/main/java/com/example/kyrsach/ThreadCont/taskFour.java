@@ -1,5 +1,5 @@
 
-    package com.example.kyrsach.ThreadCont;
+package com.example.kyrsach.ThreadCont;
 
 import com.example.kyrsach.MainApplication;
 import com.example.kyrsach.Metod.openWindows;
@@ -19,28 +19,34 @@ import java.util.concurrent.Semaphore;
         String valstime;
         Label lel;
         openWindows open = new openWindows();
-        public taskFour(){}
-        public taskFour(String PID, Semaphore sem, Label lel){
+
+        public taskFour() {
+        }
+
+        public taskFour(String PID, Semaphore sem, Label lel) {
             this.PID = PID;
             this.sem = sem;
             this.lel = lel;
         }
+
         public String getStime() {
-            valstime = "Время старта процесса: "+ MainApplication.getTimeStart();
+            valstime = "Время старта процесса: " + MainApplication.getTimeStart();
             return valstime;
         }
-        public String getSizeWinApp(){
-            return valSizeWH = "Размер окна приложения: "+MainApplication.getSizeW()+" "+MainApplication.getSizeH();
+
+        public String getSizeWinApp() {
+            return valSizeWH = "Размер окна приложения: " + MainApplication.getSizeW() + " " + MainApplication.getSizeH();
         }
-        public String getCountThread(){
-            return "Количество потоков в ПО: "+ Thread.getAllStackTraces().keySet().size();
+
+        public String getCountThread() {
+            return "Количество потоков в ПО: " + Thread.getAllStackTraces().keySet().size();
         }
 
         @Override
         public void run() {
             try {
                 sem.acquire();
-                System.out.println("Я пришел: "+ PID);
+                System.out.println("Я пришел: " + PID);
                 System.out.println(getStime());
                 System.out.println(getCountThread());
                 System.out.println(getSizeWinApp());
