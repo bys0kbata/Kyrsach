@@ -12,19 +12,19 @@ public class SemaphoreOS extends Thread {
     public SemaphoreOS(Label lel){
         this.lel = lel;
     }
-    taskFour task = new taskFour("Первый", sem,lel);
-    taskFour task2 = new taskFour("Первый2", sem,lel);
+    taskFour task = new taskFour("Первый", sem);
+    taskFour task2 = new taskFour("Первый2", sem);
     openWindows open = new openWindows();
     String sys;
 
     public void getSemaphoreO() throws IOException {
         Semaphore sem = new Semaphore(1);
         open.openWindows("/com/example/kyrsach/Addfolders/WinTask.fxml","Окно по заданию", 411,173);
-        task.Write();
+
         task.start();
         System.out.println(task.getName());
         task2.start();
-        task2.Read();
+
         System.out.println(task2.valstime);
     }
 

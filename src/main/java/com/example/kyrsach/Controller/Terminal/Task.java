@@ -11,15 +11,19 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 
 public class Task extends Application {
     String  size = "11";
 
 
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefWidth(411);
         anchorPane.setPrefHeight(173);
@@ -42,24 +46,10 @@ public class Task extends Application {
         Label sizeLabel = new Label("Размеры окна приложения: 00x00 \nВремя старта процесса: 00:00:00 \nКоличество всего потоков: 0 ");
         sizeLabel.setLayoutX(29);
         sizeLabel.setLayoutY(60);
-
-        //Label timeLabel = new Label("Время старта процесса: 00:00:00");
-        //timeLabel.setLayoutX(29);
-        //timeLabel.setLayoutY(86);
-
-        //Label threadLabel = new Label("Количество всего потоков: 0");
-        //threadLabel.setLayoutX(29);
-        //threadLabel.setLayoutY(114);
-
-        Button button = new Button("Обновить");
-        button.setStyle("-fx-background-color: white; -fx-border-color: #464451; -fx-background-radius: 20; -fx-border-radius: 20;");
-        button.setLayoutX(330);
-        button.setLayoutY(119);
-        button.setOnMouseMoved(mouseEvent -> {button.setStyle("-fx-background-color: black; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: white;");});
-        button.setOnAction(event -> getVal());
-        button.setOnMouseExited(mouseEvent -> {button.setStyle("-fx-background-color: white; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: #464451;");});
-
-        innerPane.getChildren().addAll(titleLabel, sizeLabel,  button);
+        getReaderVal();
+        sizeLabel.setText(size);
+        size = " ";
+        innerPane.getChildren().addAll(titleLabel, sizeLabel);
         anchorPane.getChildren().add(innerPane);
 
         Scene scene = new Scene(anchorPane);
@@ -68,8 +58,23 @@ public class Task extends Application {
         primaryStage.show();
     }
 
-    public void getVal(){
-        size = "Привет";
+    public void getReaderVal() throws IOException {
+        try(FileReader reader = new FileReader("Kyrsovay/System/Log/TaskWin.txt"))
+        {
+            // читаем посимвольно
+            int c;
+            while((c=reader.read())!=-1){
+
+                 size += (char) c;
+                System.out.println((char) c);
+            }
+        }
+        catch(IOException ex){
+
+            System.out.println(ex.getMessage());
+        }
+        Path path = Paths.get("Kyrsovay/System/Log/TaskWin.txt");
+        Files.writeString(path, "");
     }
 
     public static void main(String[] args) {

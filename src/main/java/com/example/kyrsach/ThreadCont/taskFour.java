@@ -23,10 +23,9 @@ import java.util.concurrent.Semaphore;
         public taskFour() {
         }
 
-        public taskFour(String PID, Semaphore sem, Label lel) {
+        public taskFour(String PID, Semaphore sem) {
             this.PID = PID;
             this.sem = sem;
-            this.lel = lel;
         }
 
         public String getStime() {
@@ -41,19 +40,27 @@ import java.util.concurrent.Semaphore;
         public String getCountThread() {
             return "Количество потоков в ПО: " + Thread.getAllStackTraces().keySet().size();
         }
+        public void write(){
+            String val = getSizeWinApp()+"\n "+getStime()+ "\n "+getCountThread();
+            try(FileWriter writer = new FileWriter("Kyrsovay/System/Log/TaskWin.txt", false))
+            {
+                // запись всей строки
+                writer.write(val);
+                writer.flush();
+            }
+            catch(IOException ex){
+
+                System.out.println(ex.getMessage());
+            }
+        }
 
         @Override
         public void run() {
             try {
                 sem.acquire();
-                System.out.println("Я пришел: " + PID);
-                System.out.println(getStime());
-                System.out.println(getCountThread());
-                System.out.println(getSizeWinApp());
-                System.out.println("Я вышел: " + PID);
-                Thread.sleep(500);
-                System.out.println("Пока");
+                write();
                 sem.release();
+                interrupt();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

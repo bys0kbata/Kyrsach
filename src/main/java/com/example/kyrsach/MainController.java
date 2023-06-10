@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.Semaphore;
 import java.util.stream.Collectors;
 
+import com.example.kyrsach.Controller.Terminal.Task;
 import com.example.kyrsach.Controller.renameFileController;
 import com.example.kyrsach.Metod.*;
 import com.example.kyrsach.ThreadCont.FindFileThread;
@@ -135,6 +136,7 @@ public class MainController {
     ObservableList<nameTable> dirname2 = FXCollections.observableArrayList();
     alertMembers alert = new alertMembers();
     FindFile FindThread = new FindFile();
+    private System Logger;
 
     private void initData(String nameFile, String sizeFile, Date lastOperationFile, String typeFile, String puth) {
         dirname2.add(new nameTable(nameFile, sizeFile, lastOperationFile, typeFile, puth));
@@ -412,7 +414,25 @@ public class MainController {
 
     @FXML
     private MenuItem SysMon;
-
+    Semaphore sem12 = new Semaphore(3);
+    taskFour task = new taskFour("Первый", sem12);
+    public void btnAdditionalInfoAction() {
+        ProcessBuilder pb = new ProcessBuilder();
+        String javaExecutable = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+        String pathToJarFile = "./out/artifacts/Kyrsach_jar/Kyrsach.jar";
+        String classpath = new String("./lib/javafx-sdk-17.0.2/lib/"); // Замените на реальный путь к JavaFX SDK
+        System.out.println(javaExecutable);
+        pb.command(javaExecutable, "--module-path", classpath, "--add-modules", "javafx.controls,javafx.fxml", "-jar", pathToJarFile, "myArg", "123");
+        System.out.println(pb.command());
+        File log = new File("log" + 0 + ".txt"); //debug log for started process
+        try {
+            pb.redirectOutput(log);
+            pb.redirectError(log);
+            pb.start();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
         @FXML 
     void initialize() throws IOException {
         pathHistory.add(0, Path.of(root));
@@ -691,12 +711,8 @@ public class MainController {
                 }
             });
             WinTest.setOnAction(event -> {
-                try {
-                    semOS.getSemaphoreO();
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                task.run();
+                btnAdditionalInfoAction();
             });
             /***
              * Реализация DragandDrop
