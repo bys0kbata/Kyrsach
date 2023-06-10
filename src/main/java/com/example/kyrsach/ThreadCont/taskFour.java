@@ -34,6 +34,7 @@ public class taskFour extends Thread {
     public String getCountThread(){
         return "Количество потоков в ПО: "+ Thread.getAllStackTraces().keySet().size();
     }
+
     @Override
     public void run() {
         try {
