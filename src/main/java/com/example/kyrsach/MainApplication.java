@@ -19,11 +19,11 @@ import java.time.format.DateTimeFormatter;
 
 
 public class MainApplication extends Application {
-    openWindows open = new openWindows();
+    public openWindows open = new openWindows();
 
-    LocalDateTime time;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-    static String formattedTime;
+    public LocalDateTime time;
+    public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    public static String formattedTime;
 
     public static double sizeH;
     public static double sizeW;
