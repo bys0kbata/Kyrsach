@@ -375,7 +375,7 @@ public class MainController {
             Thread.sleep(2000);
             usbList = java.util.List.of(filePath.listFiles());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Флешки нет");
         }
         while (true) {
             try {
@@ -409,7 +409,7 @@ public class MainController {
     private MenuItem SysMon;
     Semaphore sem12 = new Semaphore(3);
     taskFour task = new taskFour("Первый", sem12);
-    public void btnAdditionalInfoAction() {
+    public void TaskFo() {
         ProcessBuilder pb = new ProcessBuilder();
         String javaExecutable = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
         String pathToJarFile = "./out/artifacts/Kyrsach_jar/Kyrsach.jar";
@@ -704,8 +704,13 @@ public class MainController {
                 }
             });
             WinTest.setOnAction(event -> {
-                task.run();
-                btnAdditionalInfoAction();
+                //task.run();
+                //TaskFo();
+                try {
+                    semOS.getSemaphoreO();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
             /***
              * Реализация DragandDrop
