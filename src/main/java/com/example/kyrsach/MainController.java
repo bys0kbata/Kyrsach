@@ -462,7 +462,7 @@ public class MainController {
             SysMon.setOnAction(actionEvent ->{
                 filemetod.GnomeSystemMonitor();
             });
-            contextMenu.getItems().addAll(menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile, menuRestored);
+            contextMenu.getItems().addAll(menuCreateDir, menuDelete,menuСopy,menuPaste,menuDeleteBasket,menuRename,menuCreateFile);
             contextMenu.setStyle("-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #464451;");
             //Контекстное меню
             menuСopy.setOnAction(actionEvent -> {
@@ -472,10 +472,14 @@ public class MainController {
             });
             menuPaste.setOnAction(actionEvent -> {
                 filemetod.pasteFile(copyVal,tableView.getSelectionModel().getSelectedItem().getPuth() + "/" + copyNameVal );
+                dirname2.clear();
+                openFileandReadFile();
             });
             menuRename.setOnAction(actionEvent -> {
                 try {
                     filemetod.renameFile(new File(tableView.getSelectionModel().getSelectedItem().getPuth()));
+                    dirname2.clear();
+                    openFileandReadFile();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -483,6 +487,8 @@ public class MainController {
             menuCreateFile.setOnAction(actionEvent -> {
                 try {
                     filemetod.createFile(new File(tableView.getSelectionModel().getSelectedItem().getPuth()));
+                    dirname2.clear();
+                    openFileandReadFile();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -490,6 +496,8 @@ public class MainController {
             menuCreateDir.setOnAction(actionEvent ->{
                 try {
                     filemetod.createFolder(new File(tableView.getSelectionModel().getSelectedItem().getPuth()));
+                    dirname2.clear();
+                    openFileandReadFile();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -497,6 +505,8 @@ public class MainController {
             menuDelete.setOnAction(actionEvent ->{
                 if(new File(tableView.getSelectionModel().getSelectedItem().getPuth()).isDirectory()) {
                     filemetod.deleteFullFile(tableView.getSelectionModel().getSelectedItem().getPuth());
+                    dirname2.clear();
+                    openFileandReadFile();
                 }else {
                     new Thread(new Runnable() {
                         @Override
@@ -513,7 +523,7 @@ public class MainController {
                                 throw new RuntimeException(e);
                             }
                         }
-                    }).start();
+                    }).run();
                 }
                 dirname2.clear();
                 openFileandReadFile();
@@ -522,6 +532,8 @@ public class MainController {
                 //Нужно перемещать в папку Корзина
                 try {
                     filemetod.deleteinBasket(tableView.getSelectionModel().getSelectedItem().getPuth());
+                    dirname2.clear();
+                    openFileandReadFile();
                 } catch (IOException e) {
                     System.out.println("Печаль");
                 }
@@ -529,6 +541,8 @@ public class MainController {
             menuRestored.setOnAction(actionEvent -> {
                 try {
                     filemetod.returninBasket(tableView.getSelectionModel().getSelectedItem().getPuth());
+                    dirname2.clear();
+                    openFileandReadFile();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -550,7 +564,7 @@ public class MainController {
                 buttonAgry.setOnAction(actionEvent ->
                 {
                     try {
-                        open.openWindows("/com/example/kyrsach/Addfolders/helper agry.fxml", "Cправка", 323, 172);
+                        open.openWindows("/com/example/kyrsach/Addfolders/helper agry.fxml", "Cправка", 323, 269);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

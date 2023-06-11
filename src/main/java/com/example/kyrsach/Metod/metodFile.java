@@ -19,10 +19,11 @@ public class metodFile {
     public ArrayList<Long> listPID = new ArrayList<>();
     private Boolean protect(File file){
         System.out.println(root.getAbsolutePath());
+        System.out.println(file.getAbsolutePath());
         if (!Objects.isNull(file) && (file.toString().startsWith(new File(root+"/System").toString())
-                ||file.toString().startsWith(new File(root+"/Trash").toString())))
+                ||file.getAbsolutePath().equals(root.getAbsolutePath()+"/Trash")))
         {
-            Alert alert=new Alert(Alert.AlertType.ERROR,"Нельзя удалиь сиситемные папки", ButtonType.OK);
+            Alert alert=new Alert(Alert.AlertType.ERROR,"Нельзя удалить сиситемные папки", ButtonType.OK);
             alert.showAndWait();
             throw new RuntimeException("Нельзя удалить системные папки");
         }else {

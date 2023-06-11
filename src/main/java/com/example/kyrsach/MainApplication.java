@@ -52,7 +52,7 @@ public class MainApplication extends Application {
                 if(event.isControlDown() && event.getCode() == KeyCode.H)
                 {
                     try {
-                        open.openWindows("/com/example/kyrsach/Addfolders/helper agry.fxml", "Cправка", 323, 172);
+                        open.openWindows("/com/example/kyrsach/Addfolders/helper agry.fxml", "Cправка", 323, 269);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

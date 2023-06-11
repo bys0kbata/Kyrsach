@@ -7,7 +7,7 @@
    <children>
       <AnchorPane layoutX="46.0" layoutY="37.0" prefHeight="126.0" prefWidth="240.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;">
          <children>
-            <Text layoutX="26.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Операционные системы и оболочки." wrappingWidth="206.9830722808838" />
+            <Text layoutX="8.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Операционные системы и оболочки." wrappingWidth="266.9830722808838" />
             <Text layoutX="30.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Язык программирования: Java." wrappingWidth="217.9830722808838" />
             <Text layoutX="71.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Группа: РПИС-12" wrappingWidth="116.98307228088379" />
             <Text layoutX="43.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Правдин Денис Сергеевич" wrappingWidth="176.9830722808838" />
