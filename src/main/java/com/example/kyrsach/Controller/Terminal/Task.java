@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 import java.util.Date;
 
 public class Task extends Application {
-    String  size = "11";
+    String  size = " ";
 
 
     public void start(Stage primaryStage) throws IOException {
