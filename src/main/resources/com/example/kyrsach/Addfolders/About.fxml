@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="198.0" prefWidth="357.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kyrsach.Controller.AboutController">
+<AnchorPane prefHeight="198.0" prefWidth="357.0" style="-fx-background-color: #B5B8B1; -fx-border-color: #464451;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="46.0" layoutY="37.0" prefHeight="126.0" prefWidth="240.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #464451;">
          <children>

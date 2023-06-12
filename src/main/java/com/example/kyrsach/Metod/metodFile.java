@@ -16,7 +16,6 @@ public class metodFile {
     TextInputDialog text = new TextInputDialog();
     LogFile log = new LogFile();
     File root= new File("/home/denis/Документы/GitHub/Kyrsach/Kyrsovay");
-    public ArrayList<Long> listPID = new ArrayList<>();
     private String processPID;
 
     private Boolean protect(File file){
@@ -34,23 +33,6 @@ public class metodFile {
     }
 
     public metodFile() {
-    }
-    public void moveFile(File copyFiles){
-        File source=new File(copyFiles.toURI());
-        if (protect(source)){
-            String command = "mv " + source + " " + source;
-
-            // Создание процесса для выполнения команды в терминале
-            ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", command);
-
-            // Запуск процесса и ожидание завершения
-            try {
-                Process process = processBuilder.start();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
     }
     alertMembers alert = new alertMembers();
     File FileVal;
@@ -151,21 +133,6 @@ public class metodFile {
         } catch (IOException ioe) {
             alert.membersError("Нет приложения для открытия такого файла.");
         }
-    }
-
-    public File findFile(File dir, String name) {
-        File result = null; // no need to store result as String, you're returning File anyway
-        File[] dirlist  = dir.listFiles();
-
-        for(int i = 0; i < dirlist.length; i++) {
-            if(dirlist[i].isDirectory()) {
-                result = findFile(dirlist[i], name);
-                if (result!=null) break; // recursive call found the file; terminate the loop
-            } else if(dirlist[i].getName().matches(name)) {
-                return dirlist[i]; // found the file; return it
-            }
-        }
-        return result; // will return null if we didn't find anything
     }
     public void deleteinBasket(String url) throws IOException {
         if (protect(new File(url))){

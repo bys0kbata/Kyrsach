@@ -32,9 +32,8 @@ public class TaskController {
     private Button ButtonUpdate;
     @FXML
     private ListView<String> listTask;
-    ObservableList<String> list = FXCollections.observableArrayList();
-    metodFile met = new metodFile();
-    ArrayList<String> fileLinesList = new ArrayList<>();
+    public ObservableList<String> list = FXCollections.observableArrayList();
+     public ArrayList<String> fileLinesList = new ArrayList<>();
 
     private void readFile(){
         File file = new File("./Kyrsovay/System/Log/task.txt"); // Укажите путь к вашему файлу
@@ -75,22 +74,6 @@ public class TaskController {
             e.printStackTrace();
         }
     }
-//    public void Read(){ try(FileReader reader = new FileReader("Kyrsovay/System/Log/task.txt"))
-//    {
-//        // читаем посимвольно
-//        int c;
-//        while((c=reader.read())!=-1){
-//            // Выписывает результат по строчно
-//            r +=(char)c;
-//            System.out.print((char)c);
-//        }
-//        list.add(r);
-//        Files.writeString(Path.of(new File("Kyrsovay/System/Log/task.txt").getAbsolutePath()), (CharSequence) "");
-//    }
-//    catch(IOException ex){
-//
-//        System.out.println(ex.getMessage());
-//    }}
     public void ProcessList(){
         try {
             list.clear();

@@ -107,8 +107,6 @@ public class MainController {
     ArrayList<String> histiryURL = new ArrayList<>(100000);
     metodFile filemetod = new metodFile();
      ContextMenu contextMenu = new ContextMenu();
-    ContextMenu contextMenuTrash = new ContextMenu();
-    ContextMenu contextMenuSystem = new ContextMenu();
      //Cоздание контекстного меню, который будет выплываться через правую кнопку мыши
      //Создание элемента в контекстном меню с названием.
       MenuItem menuCreateDir = new MenuItem("Создать Директорию");
@@ -129,7 +127,6 @@ public class MainController {
     ObservableList<nameTable> dirname2 = FXCollections.observableArrayList();
     alertMembers alert = new alertMembers();
     FindFile FindThread = new FindFile();
-    private System Logger;
 
     private void initData(String nameFile, String sizeFile, Date lastOperationFile, String typeFile, String puth) {
         dirname2.add(new nameTable(nameFile, sizeFile, lastOperationFile, typeFile, puth));
@@ -225,7 +222,6 @@ public class MainController {
             alert.membersError("Неккоректный путь.");
         }
     }
-    Semaphore sem = new Semaphore(1);
     public void OpenFindFile(ArrayList<String> arrayLURL)
     {
         dirname2.clear();
@@ -407,8 +403,6 @@ public class MainController {
 
     @FXML
     private MenuItem SysMon;
-    Semaphore sem12 = new Semaphore(3);
-    taskFour task = new taskFour("Первый", sem12);
     public void TaskFo() {
         ProcessBuilder pb = new ProcessBuilder();
         String javaExecutable = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";

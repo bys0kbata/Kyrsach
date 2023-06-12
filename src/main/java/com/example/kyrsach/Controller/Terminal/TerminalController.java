@@ -25,11 +25,6 @@ public class TerminalController {
 
         @FXML
         private TextField ComandTerminal;
-
-        @FXML
-        private Button CompBut;
-        @FXML
-        private Button CompBut1;
         @FXML
         private MenuItem HelpBut;
         @FXML
