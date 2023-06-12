@@ -17,6 +17,8 @@ public class metodFile {
     LogFile log = new LogFile();
     File root= new File("/home/denis/Документы/GitHub/Kyrsach/Kyrsovay");
     public ArrayList<Long> listPID = new ArrayList<>();
+    private String processPID;
+
     private Boolean protect(File file){
         System.out.println(root.getAbsolutePath());
         System.out.println(file.getAbsolutePath());
@@ -178,64 +180,124 @@ public class metodFile {
         File urlq = new File(url);
         log.writeFile("Вернули файл с корзины с названием: "+ urlq.getName() );
         Process command=Runtime.getRuntime().exec("mv "+ url +" "+root+"/Restored objects/"+urlq.getName());}
-    
-    public void MessengerStandart(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open File");
-        log.writeFile("Открыли локальный файловый менджер" );
-        File file = fileChooser.showOpenDialog(null);
-    }
+
     public void TerminalOpen() throws IOException {
         log.writeFile("Открыли локальный терминал");
-        Process p = Runtime.getRuntime().exec("gnome-terminal");
-        Write(p.pid(),"Терминал");
-        System.out.println(p.pid());
-    }
-    public void GnomeControl() {
-        try {
-            log.writeFile("Открыли локальный контроллер сети");
-            Process p =Runtime.getRuntime().exec("gnome-control-center");
-            Write(p.pid(),"Контроллер сети");
+        try{
+            Process p =Runtime.getRuntime().exec("gnome-terminal");
+            processPID= String.valueOf(p.pid());
+
+            File file = new File("./Kyrsovay/System/Log/task.txt");
+//create the file.
+            if (file.createNewFile()) {
+                System.out.println("File is created!");
+            } else {
+                System.out.println("File already exists.");
+            }
+            FileWriter writer = new FileWriter(file);
+            writer.write("");
+            writer.write(processPID);
+            //write content
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void GnomeControl() {
+            log.writeFile("Открыли локальный контроллер сети");
+            try{
+            Process p =Runtime.getRuntime().exec("gnome-control-center");
+                processPID= String.valueOf(p.pid());
+
+                File file = new File("./Kyrsovay/System/Log/task.txt");
+//create the file.
+                if (file.createNewFile()) {
+                    System.out.println("File is created!");
+                } else {
+                    System.out.println("File already exists.");
+                }
+                FileWriter writer = new FileWriter(file);
+                writer.write("");
+                writer.write(processPID);
+                //write content
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 
     public void GnomeSystemMonitor() {
-        try {
             log.writeFile("Открыли локальный системный мониторинг");
-            Process p =Runtime.getRuntime().exec("gnome-system-monitor");
-            Write(p.pid(),"Cистема мониторинга");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                Process process = Runtime.getRuntime().exec("gnome-system-monitor");
+                processPID= String.valueOf(process.pid());
+
+                File file = new File("./Kyrsovay/System/Log/task.txt");
+//create the file.
+                if (file.createNewFile()) {
+                    System.out.println("File is created!");
+                } else {
+                    System.out.println("File already exists.");
+                }
+                FileWriter writer = new FileWriter(file);
+                writer.write("");
+                writer.write(processPID);
+                //write content
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 
     public void GnomeLogs() {
-        try {
             log.writeFile("Открыли локальный систему логов");
-            Process p =Runtime.getRuntime().exec("gnome-logs");
-            Write(p.pid(),"Cистема логов");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                Process process = Runtime.getRuntime().exec("gnome-logs");
+                processPID= String.valueOf(process.pid());
+
+                File file = new File("./Kyrsovay/System/Log/task.txt");
+//create the file.
+                if (file.createNewFile()) {
+                    System.out.println("File is created!");
+                } else {
+                    System.out.println("File already exists.");
+                }
+                FileWriter writer = new FileWriter(file);
+                writer.write("");
+                writer.write(processPID);
+                //write content
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 
     public void NetworkManager() {
-        try {
             log.writeFile("Открыли локальный интернет менеджер");
-            Process p =Runtime.getRuntime().exec("nm-connection-editor");
-            Write(p.pid(),"интернет менеджер");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                Process process = Runtime.getRuntime().exec("gnm-connection-editor");
+                processPID= String.valueOf(process.pid());
+
+                File file = new File("./Kyrsovay/System/Log/task.txt");
+//create the file.
+                if (file.createNewFile()) {
+                    System.out.println("File is created!");
+                } else {
+                    System.out.println("File already exists.");
+                }
+                FileWriter writer = new FileWriter(file);
+                writer.write("");
+                writer.write(processPID);
+                //write content
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
-    public void Write(Long Pid, String name){ try(
-            FileWriter fw = new FileWriter(new File("Kyrsovay/System/Log/task.txt"), true))
-    {
-        fw.write(Pid+" "+ name+"\n");
-        System.out.println("Successfully written data to the file");
-    } catch (IOException e) {
-        e.printStackTrace();
-    }}
+
+    public void MessengerStandart() {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("System File Manager");
+            File file = fileChooser.showOpenDialog(null);
+    }
 }
