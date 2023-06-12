@@ -105,8 +105,32 @@ public class TaskController {
             readFile();
             isProcessRunning();
             listTask.setItems(list);
+            writeToLog();
         } catch (Exception err) {
             err.printStackTrace();
+        }
+    }
+    private void writeToLog(){
+        try {
+
+            File file = new File("./Kyrsovay/System/Log/LogProc.txt");
+//create the file.
+            if (file.createNewFile()) {
+                System.out.println("File is created!");
+            } else {
+                System.out.println("File already exists.");
+            }
+            FileWriter writer = new FileWriter(file);
+            writer.write("");
+            for (int i = 0; i < list.size(); i++) {
+                writer.write(list.get(i));
+                writer.write("\n");
+            }
+
+            //write content
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
